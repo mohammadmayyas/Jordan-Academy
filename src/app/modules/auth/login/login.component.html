@@ -1,0 +1,38 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="card">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon float-right-ar">
+                    <i class="material-icons">address</i>
+                </div>
+                <h4 class="card-title align-right-ar pr-100"><span translate>Additional Info</span></h4>
+            </div>
+            <div class="card-body">
+        <div class="row">
+            <div class="col-md-6  registerForm">
+                <h1>{{"Login" | translate}}</h1>
+                <form [formGroup]="loginForm" (ngSubmit)= "onSubmit()">
+                    <mat-form-field class="registerInput {{currentLang}}" appearance="standard" class="loginInput">
+                        <mat-label>{{"UserName" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="userName">
+                        <mat-error *ngIf="loginForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput {{currentLang}}" appearance="standard" class="loginInput">
+                        <mat-label>{{"Password" | translate}}</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="loginForm.controls.password.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Password" | translate}}</mat-error>
+                    </mat-form-field>
+                    <div class="form-group submet">
+                        <button mat-raised-button color="accent">{{"Login" | translate}}</button>
+                    </div>
+                </form>
+                <h3 routerLink="../register" style="cursor: pointer;"><a >{{"CreateNewAccount" | translate}}</a></h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+

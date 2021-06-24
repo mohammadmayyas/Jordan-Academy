@@ -1,0 +1,27 @@
+.filters {
+    width: 250px;
+    height: 500px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+    border-right: 1px solid #dbdbdb;
+}
+
+.course-card{
+    margin-bottom: 30px;
+    height: 300px;
+    cursor: pointer;
+}
+
+.courseImage{
+    height: 140px;
+    width: 220px;
+}
+
+mdb-card-img ~ img{
+    height: 140px;
+    width: 220px;
+}
+
+
+

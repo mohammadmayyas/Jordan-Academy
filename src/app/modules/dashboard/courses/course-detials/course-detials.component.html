@@ -1,0 +1,11 @@
+<h1>Course Information</h1>
+<h2>Name: {{course.courseName}}</h2>
+<h2>Description: {{course.description}}</h2>
+<h2>Duration: {{course.duration}}</h2>
+<h2>Image: <img class="courseImage" src="{{apiRoot}}/{{course.courseImagePath}}"></h2>
+<h2>Students: <br>
+    <ng-container *ngFor="let item of course.users">
+        <h3>{{item.userName}}</h3><br>
+    </ng-container>
+</h2>
+

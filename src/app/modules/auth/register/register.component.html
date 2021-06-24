@@ -1,0 +1,114 @@
+   <div>
+    <div class="card">
+        <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon float-right-ar">
+                <i class="material-icons">address</i>
+            </div>
+            <h4 class="card-title align-right-ar pr-100"><span translate>Additional Info</span></h4>
+        </div>
+        <div class="card-body">
+        <div class="row">
+            <div class="col-md-9  registerForm">
+                <h1>{{"CreateYourAccount" | translate}}</h1>
+                <form [formGroup]="registerForm" (ngSubmit)= "onSubmit()">
+                    <mat-form-field class="registerInput UserName {{currentLang}}" appearance="standard" >
+                        <mat-label>{{"UserName" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="userName">
+                        <mat-error *ngIf="registerForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.userName.hasError('minlength')">{{"UserName" | translate}} {{"MustBeAtLeast" | translate}} 5 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.userName.hasError('maxlength')">{{"UserName" | translate}} {{"Can'tBeAbove" | translate}} 50 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput Email {{currentLang}}" appearance="standard">
+                        <mat-label>{{"Email" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="email" placeholder="Ex. pat@example.com">
+                        <mat-error *ngIf="registerForm.controls.email.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Email" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.email.hasError('email')">{{"PleaseEnterValidEmail" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput FirstNameEn {{currentLang}}" appearance="standard">
+                        <mat-label>{{"FirstName" | translate}} (English)</mat-label>
+                        <input matInput type="text" formControlName="firstNameEn">
+                        <mat-error *ngIf="registerForm.controls.firstNameEn.hasError('required')">{{"PleaseEnterYour" | translate}} {{"FirstName" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameEn.hasError('minlength')">{{"FirstName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameEn.hasError('maxlength')">{{"FirstName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"LastName" | translate}} (English)</mat-label>
+                        <input matInput type="text" formControlName="lastNameEn">
+                        <mat-error *ngIf="registerForm.controls.lastNameEn.hasError('required')">{{"PleaseEnterYour" | translate}} {{"LastName" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.lastNameEn.hasError('minlength')">{{"LastName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.lastNameEn.hasError('maxlength')">{{"LastName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput FirstNameAr {{currentLang}}" appearance="standard">
+                        <mat-label>{{"FirstName" | translate}} (عربي)</mat-label>
+                        <input matInput type="text" formControlName="firstNameAr">
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('required')">{{"PleaseEnterYour" | translate}} {{"FirstName" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('minlength')">{{"FirstName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('maxlength')">{{"FirstName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"LastName" | translate}} (عربي)</mat-label>
+                        <input matInput type="text" formControlName="lastNameAr">
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('required')">{{"PleaseEnterYour" | translate}} {{"LastName" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('minlength')">{{"LastName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.firstNameAr.hasError('maxlength')">{{"LastName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="registerInput DateOfBirth {{currentLang}}" color="accent" appearance="standard">
+                        <mat-label>{{"DateOfBirth" | translate}}</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="dateOfBirth">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error *ngIf="registerForm.controls.dateOfBirth.hasError('required')">{{"PleaseEnterYour" | translate}} {{"DateOfBirth" | translate}}</mat-error>
+                      </mat-form-field>
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"PhoneNumber" | translate}}</mat-label>
+                        <!-- <span matPrefix>+962 &nbsp;</span> -->
+                        <input matInput type="tel" formControlName="phoneNumber" placeholder="+962799999999">
+                        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">{{"PleaseEnterYour" | translate}} {{"PhoneNumber" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('pattern')">Phone number is invalid</mat-error>
+                        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('minlength')">{{"PhoneNumber" | translate}} {{"MustBeAtLeast" | translate}} 10 {{"Numbers" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('maxlength')">{{"PhoneNumber" | translate}} {{"Can'tBeAbove" | translate}} 13 {{"Numbers" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput City {{currentLang}}" appearance="standard">
+                        <mat-label>{{"City" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="city">
+                        <mat-error *ngIf="registerForm.controls.city.hasError('required')">{{"PleaseEnterYour" | translate}} {{"City" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.city.hasError('minlength')">{{"City" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.city.hasError('maxlength')">{{"City" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"Address" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="address">
+                        <mat-error *ngIf="registerForm.controls.address.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Address" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.address.hasError('minlength')">{{"Address" | translate}} {{"MustBeAtLeast" | translate}} 5 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.address.hasError('maxlength')">{{"Address" | translate}} {{"Can'tBeAbove" | translate}} 20 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="registerInput Password {{currentLang}}" appearance="standard">
+                        <mat-label>{{"Password" | translate}}</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="registerForm.controls.password.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Password" | translate}}</mat-error>
+                        <!-- <mat-error *ngIf="form.password.errors?.pattern && !form.password.errors?.required">Password must be a complex</mat-error> -->
+                        <mat-error *ngIf="registerForm.controls.password.hasError('minlength')">{{"Password" | translate}} {{"MustBeAtLeast" | translate}} 8 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.password.hasError('maxlength')">{{"Password" | translate}} {{"Can'tBeAbove" | translate}} 200 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    <mat-radio-group class="RightInput" aria-label="Select your gender" formControlName="gender">
+                        <mat-label>{{"Gender" | translate}}</mat-label>
+                        <mat-radio-button value="Male">{{"Male" | translate}}</mat-radio-button>
+                        <mat-radio-button value="Female">{{"Female" | translate}}</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field class="registerInput Image {{currentLang}}" appearance="standard">
+                        <mat-label>Image</mat-label>
+                        <ngx-mat-file-input formControlName="userImage" ></ngx-mat-file-input>
+                    </mat-form-field>
+                    <mat-error *ngIf="registerForm.controls.gender.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Gender" | translate}}</mat-error>
+                    <div class="form-group submet">
+                        <button type="submit" mat-raised-button color="accent">{{"Register" | translate}}</button>
+                    </div>
+                </form>
+                <!-- <h3 routerLink="../login" style="cursor: pointer;"><a >go to login</a></h3> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

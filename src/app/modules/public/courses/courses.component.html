@@ -1,0 +1,55 @@
+<div class="filters col-md-3">
+  <input type="text" class="form-control" [(ngModel)]="searchText"
+    placeholder="Search for anything">
+
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Start date</mat-label>
+      <input matInput [matDatepicker]="picker1" (dateChange)="retrieveCourses()" [(ngModel)]="searchStartDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1 color="warn"></mat-datepicker>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill"  class="width-10-rem" (click)="picker.open()">
+      <mat-date-range-input [rangePicker]="picker"  (click)="picker.open()">
+          <input matStartDate  (dateChange)="retrieveCourses()"  (click)="picker.open()" [(ngModel)]="searchStartDate" >
+          <input matEndDate  (dateChange)="retrieveCourses()" (click)="picker.open()" [(ngModel)]="searchEndDate" >
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field> -->
+
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>End date</mat-label>
+      <input matInput [matDatepicker]="picker2"  (dateChange)="retrieveCourses()" [(ngModel)]="searchEndDate">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 color="warn"></mat-datepicker>
+    </mat-form-field>
+
+</div>
+
+<div class="row col-md-9" >
+    <ng-container *ngFor="let element of coursesList | filter:searchText">
+        <div class="col-md-3 animated slideInRight wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
+          <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
+            <div class="z-depth-3 view-cascade overlay waves-light" style="border-radius: 10px;" mdbWavesEffect>
+              <mdb-card-img class="courseImage" src="{{apiRoot}}/{{element.courseImagePath}}"></mdb-card-img>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+      
+            <mdb-card-body style="margin-left: 15px;"  [cascade]="true" class=" pb-0 px-0">
+              <h2 class="red-text">{{element.courseName}}</h2>
+              <h5 class="card-title">
+                  <mdb-icon fas icon="level-up-alt" style="color: red"></mdb-icon>
+                  {{element.courseLevel}}</h5>
+              <h5 class="card-title">
+                  <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
+                  {{element.startDate | date:'shortDate'}} - {{element.endDate | date:'shortDate'}}</h5>
+             
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+    </ng-container>
+</div>
+

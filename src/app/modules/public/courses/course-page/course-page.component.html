@@ -1,0 +1,23 @@
+<div *ngIf="course" class="container">
+<div class="row col-md-12">
+        <div class="col-md-9 ">
+            <div *ngIf="isDisabled" class="alert alert-success" role="alert">
+                Your request has been sent.
+              </div>
+            <h1>{{cName}}</h1>
+            <h3 *ngIf="course.description != '' && course.description != 'undefined'">{{course.description}}</h3>
+        </div>
+        <div class="col-md-3 course-enroll">
+            <img src="{{apiRoot}}/{{course.courseImagePath}}">
+            <h3 class="course-level">
+                <mdb-icon fas icon="level-up-alt" style="color: red"></mdb-icon>
+                {{course.courseLevel}}
+            </h3>
+            <h3 class="card-title">
+                <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
+                {{course.startDate | date:'shortDate'}} - {{course.endDate | date:'shortDate'}}
+            </h3>
+            <button mdbBtn type="button" [disabled]="isDisabled" (click)="enrollToCourseRequest()" color="danger" class="hoverable" [outline]="true" mdbWavesEffect>Enroll now</button>
+        </div>
+    </div>
+</div>
