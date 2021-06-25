@@ -22,6 +22,7 @@ import { CertificatesComponent } from './certificates/certificates.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
 import { GetCertificatesRequestsComponent } from './certificates/get-certificates-requests/get-certificates-requests.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { UpdateTraineeMarksComponent } from './courses/course-detials/update-trainee-marks/update-trainee-marks.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     CertificatesComponent,
     CertificatesListComponent,
     GetCertificatesRequestsComponent,
+    UpdateTraineeMarksComponent,
   ],
   imports: [
     CommonModule,

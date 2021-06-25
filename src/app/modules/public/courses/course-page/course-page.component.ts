@@ -23,13 +23,12 @@ export class EnrollToCourse{
 })
 export class CoursePageComponent implements OnInit {
 
-  courseId: string = 'N/A';
+  courseId: string = '';
   course: any;
   apiRoot= env.apiRoot;
   enrollRequest: any;
   enrollsRequestsList: any[] = [];
   isDisabled: boolean= false;
-  cName: string= '';
   constructor(
     private route: ActivatedRoute,
     private sharedService: SharedService,
@@ -43,8 +42,7 @@ export class CoursePageComponent implements OnInit {
   ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('courseId')!;
     this.getCourseInfo(this.courseId);
-    this.getAllEnrollToCourseRequests();
-    //await this.checkIfUserSentEnrollRequest();
+    this.getAllPendingEnrollRequests();
 
   }
 
@@ -52,8 +50,6 @@ export class CoursePageComponent implements OnInit {
     this.spinner.show();
     this.courseService.getCourseInfo(courseId).subscribe((res: any) => {
       this.course = res;
-      this.cName= this.course.courseName;
-      //console.log(this.course);
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
@@ -79,31 +75,24 @@ export class CoursePageComponent implements OnInit {
     }
   }
 
-   getAllEnrollToCourseRequests(){
-    this.courseService.getAllEnrollPendingRequest().subscribe((res: any) => {
+  getAllPendingEnrollRequests(){
+    this.courseService.getAllPendingEnrollRequests().subscribe((res: any) => {
       this.enrollsRequestsList= res;
       console.log(this.enrollsRequestsList)
-      let user= JSON.parse(localStorage.getItem('user')!);
-      let userId= user.User_Id;
-      this.enrollsRequestsList.forEach((element: any) => {
-        if(element.courseId == this.courseId && element.userId == userId){
-          this.isDisabled= true;
-        }
-      })
-    },  (err: any) => {
+      this.checkIfUserEnrolledToCourse();
+    }, err => {
 
     });
   }
 
-  // checkIfUserSentEnrollRequest(){
-  //   let user= JSON.parse(localStorage.getItem('user')!);
-  //   let userId= user.User_Id;
-  //   console.log('test')
-  //   let isSentRequest= this.enrollsRequestsList.filter(m => m.users.userId === userId && m.courseId === this.course.courseId);
-
-  //   if(isSentRequest.length !=0){
-  //     this.isDisabled= true;
-  //   }
-  // }
+  checkIfUserEnrolledToCourse(){
+    let user= JSON.parse(localStorage.getItem('user')!);
+    let userId= user.User_Id;
+    this.enrollsRequestsList.forEach((element: any) => {
+      if(element.courseId == this.courseId && element.userId == userId){
+        this.isDisabled= true;
+      }
+    });
+  }
 
 }

@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/core/services/course.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { CreateUpdateCourseComponent } from '../create-update-course/create-update-course.component';
 import { environment as env } from 'src/environments/environment';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -17,7 +18,8 @@ import { environment as env } from 'src/environments/environment';
 export class CoursesListComponent implements OnInit {
 
   coursesList: any[] = [];
-  displayedColumns: string[] = ['No', 'Name', 'Description', 'CourseLevel', 'Duration', 'Image', 'Operations'];
+  trainersList: any[] = [];
+  displayedColumns: string[] = ['No', 'Name', 'CourseLevel', 'Duration', 'Trainer', 'Image', 'Operations'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   apiRoot = env.apiRoot;
@@ -27,9 +29,11 @@ export class CoursesListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     public datepipe: DatePipe,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    this.getAllTrainers2();
     this.courseService.getAllCourses().subscribe((res: any) =>{
       this.coursesList = res;
       this.dataSource = new MatTableDataSource(this.coursesList);
@@ -61,6 +65,7 @@ export class CoursesListComponent implements OnInit {
       courseLevel: element.courseLevel,
       startDate : startDate,
       endDate : endDate,
+      trainerId: element.trainerId,
       courseImage: element.courseImage,
     };
 
@@ -78,10 +83,19 @@ export class CoursesListComponent implements OnInit {
         formData.append('courseLevel', result.courseLevel);
         formData.append('startDate', `${startDate}`);
         formData.append('endDate', `${endDate}`);
+        formData.append('trainerId', result.trainerId);
         formData.append('courseImage', result.courseImage);
         this.courseService.updateCourse(result.courseId, formData);
         this.sharedService.reload(this.router.url);
       }
     });
+  }
+
+  getAllTrainers2(){
+    this.userService.getAllTrainers().subscribe((res: any) => {
+      this.trainersList= res;
+    }, err => {
+
+    })
   }
 }

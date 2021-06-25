@@ -5,6 +5,7 @@ import { CourseService } from 'src/app/core/services/course.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-create-update-course',
@@ -28,9 +29,13 @@ export class CreateUpdateCourseComponent implements OnInit {
       Validators.maxLength(50)]),
     startDate: new FormControl(''),
     endDate: new FormControl(''),
+    trainerId: new FormControl(''),
     courseImage: new FormControl('', [
       Validators.required]),
-  })
+  });
+
+  trainersList: any[]= [];
+  trainerId: string= '';
   constructor(
     private courseService: CourseService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,17 +43,28 @@ export class CreateUpdateCourseComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     public datepipe: DatePipe,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    this.getAllTrainers();
     if (this.data && this.data.courseId) {
       this.courseForm.controls.courseName.setValue(this.data.courseName);
       this.courseForm.controls.description.setValue(this.data.description);
       this.courseForm.controls.courseLevel.setValue(this.data.courseLevel);
       this.courseForm.controls.startDate.setValue(this.data.startDate);
       this.courseForm.controls.endDate.setValue(this.data.endDate);
+      this.courseForm.controls.trainerId.setValue(this.data.trainerId);
       this.courseForm.controls.courseImage.setValue(this.data.courseImage);
     }
+  }
+
+  getAllTrainers(){
+    this.userService.getAllTrainers().subscribe((res: any) => {
+      this.trainersList= res;
+    }, err => {
+
+    })
   }
 
   saveItem(){
@@ -76,6 +92,7 @@ export class CreateUpdateCourseComponent implements OnInit {
     formData.append('courseLevel', this.courseForm.controls.courseLevel.value);
     formData.append('startDate', `${startDate}`);
     formData.append('endDate', `${endDate}`);
+    formData.append('trainerId', this.courseForm.controls.trainerId.value);
     formData.append('courseImage', this.courseForm.controls.courseImage.value);
 
     this.courseService.createCourse(formData);

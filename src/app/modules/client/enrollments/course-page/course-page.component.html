@@ -1,0 +1,25 @@
+<div *ngIf="userCourseInfo" class="container">
+    <div class="row col-md-12">
+        <div class="col-md-9 ">
+            <div *ngIf="isRequestSent" class="alert alert-success" role="alert">
+                Your certificate request has been sent.
+              </div>
+            <h1>{{userCourseInfo.courseName}}</h1>
+            <h3>{{userCourseInfo.description}}</h3>
+        </div>
+        <div class="col-md-3 course-enroll">
+            <img src="{{apiRoot}}/{{userCourseInfo.courseImagePath}}">
+            <h3 class="course-level">
+                <mdb-icon fas icon="level-up-alt" style="color: red"></mdb-icon>
+                {{userCourseInfo.courseLevel}}
+            </h3>
+            <h3 class="card-title">
+                <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
+                {{userCourseInfo.startDate | date:'shortDate'}} - {{userCourseInfo.endDate | date:'shortDate'}}
+            </h3>
+            <button mdbBtn type="button" [disabled]="isDisabled" (click)="addCertificateRequest()" color="danger" class="hoverable" [outline]="true" mdbWavesEffect>Get certificate</button>
+        </div>
+    </div>
+</div>
+
+    

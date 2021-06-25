@@ -33,4 +33,8 @@ export class CertificateService {
   getAllCertificatesRequests(){
     return this.http.get(`${env.apiRoot}/api/Certificate/GetAllCertificatesRequests`);
   }
+
+  getAllCertificatesRequests2(){
+    return this.http.get(`${env.apiRoot}/api/Certificate/GetAllCertificatesRequests`);
+  }
 }

@@ -40,6 +40,7 @@ export class CourseService {
   }
 
   updateCourse(courseId: number, course: any){
+    this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/Course/${courseId}`, course).subscribe((res : any) => {
       this.spinner.hide();
     }, err => {
@@ -55,8 +56,25 @@ export class CourseService {
     return this.http.get(`${env.apiRoot}/api/Course/GetAllEnrollToCourseRequests`);
   }
 
-  getAllEnrollPendingRequest(){
-    return this.http.get(`${env.apiRoot}/api/Course/getAllEnrollPendingRequest`);
+  getAllPendingEnrollRequests(){
+    return this.http.get(`${env.apiRoot}/api/Course/GetAllPendingEnrollRequests`);
+  }
+
+  getAllApprovedEnrollRequests(){
+    return this.http.get(`${env.apiRoot}/api/Course/GetAllApprovedEnrollRequests`);
+  }
+
+  getTraineesAcademyInfoByCourseId(courseId: string){
+    return this.http.get(`${env.apiRoot}/api/Course/GetTraineesAcademyInfoByCourseId/${courseId}`);
+  }
+
+  updateTraineeMarks(userCourseId: number, marks: any){
+    this.spinner.show();
+    return this.http.patch(`${env.apiRoot}/api/Course/UpdateTraineeMarks/${userCourseId}`, marks).subscribe((res : any) => {
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+    });
   }
 
 }

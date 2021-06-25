@@ -42,6 +42,15 @@
                         </mat-date-range-input>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+
+                    <mat-form-field class="course-input">
+                        <mat-label>Select trainer</mat-label>
+                        <mat-select formControlName=trainerId name="trainer" [(value)]="trainerId">
+                          <mat-option *ngFor="let element of trainersList" [value]="element.userId">
+                            {{element.userName}}
+                          </mat-option>
+                        </mat-select>
                       </mat-form-field>
 
                     <mat-form-field class="course-input">

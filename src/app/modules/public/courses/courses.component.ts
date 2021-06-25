@@ -14,40 +14,31 @@ export class CoursesComponent implements OnInit {
   coursesList: any[] = [];
   apiRoot = env.apiRoot;
   searchText: any;
-  public searchStartDate: any;
-  public searchEndDate: any;
+  searchStartDate: any;
+  searchEndDate: any;
   totalCount: string = '';
   pageCount: string = '';
+  approvedRequests: any[] = [];
   constructor(
     public sharedService: SharedService,
     private courseService: CourseService
     ) { }
 
   ngOnInit(): void {
+    this.getAllApprovedEnrollRequests();
     this.getAllCourses();
   }
 
   getAllCourses(){
     this.courseService.getAllCourses().subscribe((res: any) =>{
         this.coursesList= res;
+        console.log(this.coursesList);
+        this.checkIfCoursesEnrolled(this.coursesList);
         this.sharedService.onCoursesListChange(this.coursesList);
     }, err => {
   
     });
   }
-
-  // startDateFilter(){
-  //   //const filterValue = (event.target as HTMLInputElement).value;
-  //   //let startDate = new Date(filterValue);
-  //   //console.log(this.coursesList.filter(m => new Date(m.startDate) >= startDate));
-  // }
-
-  // endDateFilter(event: Event){
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   let endDate = new Date(filterValue);
-  //   this.coursesList.filter(m => new Date(m.endDate) <= endDate);
-  //   console.log(this.coursesList);
-  // }
 
   retrieveCourses(){
     let fliterdCoursesList: any;
@@ -67,6 +58,28 @@ export class CoursesComponent implements OnInit {
     }
       
     this.coursesList= fliterdCoursesList;
+  }
+
+  getAllApprovedEnrollRequests(){
+    this.courseService.getAllApprovedEnrollRequests().subscribe((res: any) =>{
+      this.approvedRequests= res;
+      console.log(this.approvedRequests= res);
+  }, err => {
+
+  });
+  }
+
+  checkIfCoursesEnrolled(coursesList: any[]){
+    let user= JSON.parse(localStorage.getItem('user')!);
+    let userId= user.User_Id;
+    let userCourses= this.approvedRequests.filter(m => m.userId == userId);
+    console.log(coursesList.filter(g => g.courseId != userCourses[0].courseId));
+    // userCourses.forEach((element: any) => {
+    //   coursesList.forEach((element2: any) => {
+    //     if(element.courseId != element2.courseId)
+    //       console.log(coursesList);
+    //   });
+    // });
   }
 
 }

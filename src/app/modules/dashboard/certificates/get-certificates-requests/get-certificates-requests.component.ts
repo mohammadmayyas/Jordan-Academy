@@ -10,9 +10,11 @@ import { UserService } from 'src/app/core/services/user.service';
 export class AdminResponse{
   certificateId: number;
   adminResponse: string;
-  constructor(certificateId: number, adminResponse: string){
+  adminName: string;
+  constructor(certificateId: number, adminResponse: string, adminName: string){
     this.certificateId = certificateId;
     this.adminResponse = adminResponse;
+    this.adminName = adminName;
   }
 }
 
@@ -59,13 +61,17 @@ export class GetCertificatesRequestsComponent implements OnInit {
   }
 
   rejectCertificateRequest(certificateId: number){
-    this.adminResponse = new AdminResponse(certificateId, 'Reject');
+    let user= JSON.parse(localStorage.getItem('user')!);
+    let userName= user.User_Name;
+    this.adminResponse = new AdminResponse(certificateId, 'Reject', userName);
     this.userService.ResponseForGetCertificateRequest(this.adminResponse);
     this.sharedService.reload(this.router.url);
   }
 
   approveCertificateRequest(certificateId: number){
-    this.adminResponse = new AdminResponse(certificateId, 'Approve');
+    let user= JSON.parse(localStorage.getItem('user')!);
+    let userName= user.User_Name;
+    this.adminResponse = new AdminResponse(certificateId, 'Approve', userName);
     this.userService.ResponseForGetCertificateRequest(this.adminResponse);
     this.sharedService.reload(this.router.url);
   }

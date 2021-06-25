@@ -9,15 +9,6 @@
       <mat-datepicker #picker1 color="warn"></mat-datepicker>
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="fill"  class="width-10-rem" (click)="picker.open()">
-      <mat-date-range-input [rangePicker]="picker"  (click)="picker.open()">
-          <input matStartDate  (dateChange)="retrieveCourses()"  (click)="picker.open()" [(ngModel)]="searchStartDate" >
-          <input matEndDate  (dateChange)="retrieveCourses()" (click)="picker.open()" [(ngModel)]="searchEndDate" >
-      </mat-date-range-input>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field> -->
-
     <mat-form-field color="accent" appearance="fill">
       <mat-label>End date</mat-label>
       <input matInput [matDatepicker]="picker2"  (dateChange)="retrieveCourses()" [(ngModel)]="searchEndDate">
@@ -28,6 +19,9 @@
 </div>
 
 <div class="row col-md-9" >
+    <div class="enrolment-nav">
+        <a class="nav-link hoverable h4-responsive" routerLink="../../client/enrollments">Enrollments</a>
+    </div>
     <ng-container *ngFor="let element of coursesList | filter:searchText">
         <div class="col-md-3 animated slideInRight wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
           <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
