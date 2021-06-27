@@ -1,1 +1,103 @@
+<div class="container">
+  <section class="my-5 contact">
 
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Contact us</h2>
+    <p class="text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam
+      eum porro a pariatur veniam.</p>
+  
+    <div class="row">
+  
+      <div class="col-md-9 mb-md-0 mb-5">
+        <form [formGroup]="contactForm" class="contact-form">
+          <div class="row">
+  
+            <div class="col-md-6">
+                <mat-form-field class="contact-input" appearance="standard">
+                    <mat-label>Your name</mat-label>
+                    <input matInput type="text" formControlName="userName">
+                    <mat-error *ngIf="contactForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                </mat-form-field>
+              <!-- <div class="md-form mb-0">
+                <input formControlName="userName" type="text" id="contact-name" class="form-control" mdbInput>
+                <label for="contact-name" class="">Your name</label>
+              </div> -->
+            </div>
+ 
+            <div class="col-md-6">
+                <mat-form-field class="contact-input" appearance="standard">
+                    <mat-label>Your email</mat-label>
+                    <input matInput type="text" formControlName="email">
+                    <mat-error *ngIf="contactForm.controls.email.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                    <mat-error *ngIf="contactForm.controls.email.hasError('required')">Email not valid</mat-error>
+                </mat-form-field>
+              <!-- <div class="md-form mb-0">
+                <input formControlName="email" type="text" id="contact-email" class="form-control" mdbInput>
+                <label for="contact-email" class="">Your email</label>
+              </div> -->
+            </div>
+
+  
+          </div>
+          <div class="row">
+  
+            <div class="col-md-12">
+                <mat-form-field class="contact-input" appearance="standard" style="width: 100%;">
+                    <mat-label>Subject</mat-label>
+                    <input matInput type="text" formControlName="subject">
+                    <mat-error *ngIf="contactForm.controls.subject.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                </mat-form-field>
+              <!-- <div class="md-form mb-0">
+                <input formControlName="subject" type="text" id="contact-Subject" class="form-control" mdbInput>
+                <label for="contact-Subject" class="">Subject</label>
+              </div> -->
+            </div>
+  
+          </div>
+          <div class="row">
+  
+            <div class="col-md-12">
+                <mat-form-field class="contact-input" appearance="standard" style="width: 100%;">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput type="text" formControlName="message"></textarea>
+                    <mat-error *ngIf="contactForm.controls.message.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                </mat-form-field>
+              <!-- <div class="md-form">
+                <textarea formControlName="message" type="text" id="contact-message" class="form-control md-textarea" rows="3"
+                  mdbInput></textarea>
+                <label for="contact-message">Your message</label>
+              </div> -->
+            </div>
+  
+          </div>
+          
+          <div class="text-center text-md-left">
+            <a mdbBtn (click)="onSubmit()" color="primary" mdbWavesEffect>Send</a>
+          </div>
+        </form>
+  
+       
+  
+      </div>
+  
+      <div class="col-md-3 text-center">
+        <ul class="list-unstyled mb-0">
+          <li>
+            <mdb-icon fas icon="map-marked" size="2x" class="blue-text"></mdb-icon>
+            <p>San Francisco, CA 94126, USA</p>
+          </li>
+          <li>
+            <mdb-icon fas icon="phone" size="2x" class="mt-4 blue-text"></mdb-icon>
+            <p>+ 01 234 567 89</p>
+          </li>
+          <li>
+            <mdb-icon fas icon="envelope" size="2x" class="mt-4 blue-text"></mdb-icon>
+            <p class="mb-0">contact@example.com</p>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  
+  </section>
+</div>

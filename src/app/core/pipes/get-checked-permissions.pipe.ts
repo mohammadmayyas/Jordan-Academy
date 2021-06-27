@@ -1,29 +1,28 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { rolePermissions } from '../interfaces/rolePermissions';
 import { SharedService } from '../services/shared.service';
 
 @Pipe({
-  name: 'getCheckedValue',
+  name: 'getCheckedPermissions',
   pure: true
 })
-export class GetCheckedValuePipe implements PipeTransform {
+export class GetCheckedPermissionsPipe implements PipeTransform {
 
   roleId: number = 0;
-  rolesList: any ;
-  rolePermissions: any[] = [];
+  rolesList: any[] = [] ;
+
   constructor(
     private sharedService: SharedService,
     ){}
 
   transform(args: any[], value: number): boolean {
-    return this.getCheckedValue(args, value);
+    return this.getCheckedPermissions(args, value);
    
   }
 
-  getCheckedValue(args: any[], value: number): boolean{
+  getCheckedPermissions(args: any[], value: number): boolean{
     let isChecked: boolean = false
     this.rolesList = args;
-    this.sharedService.currentroleId.subscribe(roleId => this.roleId = roleId);
+    this.sharedService.currentRoleId.subscribe(roleId => this.roleId = roleId);
     this.rolesList.forEach((element: any) => {
       if(element.roleId == this.roleId){
         element.permissions.forEach((element2: any) => {

@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/core/interfaces/user';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { environment as env } from 'src/environments/environment';
+import { UserRolesComponent } from '../user-roles/user-roles.component';
 
 @Component({
   selector: 'app-users-list',
@@ -16,13 +17,15 @@ export class UsersListComponent implements OnInit {
 
   usersList: any[] = [];
   dataSource = new MatTableDataSource();
+  apiRoot: string = env.apiRoot;
   
   displayedColumns: string[] = ['No', 'UserName', 'FirstNameEn', 'LastNameEn', 'Roles', 'Email', 'PhoneNumber', 'Gender', 'DateOfBirth', 'City', 'Address', 'UserImage', 'Operations'];
   constructor(
     private userService: UserService,
     private router: Router,
     private sharedService: SharedService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -46,11 +49,10 @@ export class UsersListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  openUpdateRolePermissionsDialog(userId: number){
+    this.dialog.open(UserRolesComponent);
+    this.sharedService.onUserIdChange(userId);
+  }
   
-  // getUserRoles(){
-  //   this.usersList.forEach(ele =>{
-  //     ele.roles;
-  //   })
-  // }
 
 }

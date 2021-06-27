@@ -1,0 +1,57 @@
+<div class="container" *ngIf="testimonialsList">
+  <section class="team-section text-center my-5">
+
+    <!-- Section heading -->
+    <h2 class="h1-responsive font-weight-bold my-5">Testimonials</h2>
+    <!-- Section description -->
+    <p class="dark-grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Fugit,
+      error amet numquam iure provident voluptate esse quasi,
+      veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p>
+  
+    <!--Grid row-->
+    <div class="row text-center">
+  
+      <ng-container *ngFor="let element of testimonialsList">
+        <!--Grid column-->
+        <div class="col-md-4 mb-md-0 mb-5">
+    
+          <div class="testimonial">
+            <!--Avatar-->
+            <div class="avatar mx-auto">
+              <img *ngIf="element.users[0].userImagePath != ''"  src="{{apiRoot}}/{{element.users[0].userImagePath}}" class="rounded-circle z-depth-1 img-fluid">
+              <img *ngIf="element.users[0].userImagePath == ''" class="userImage" src="{{apiRoot}}/Uploads\Images\avatar-icon.png">
+            </div>
+            <!--Content-->
+            <h4 class="font-weight-bold dark-grey-text mt-4">Anna Deynah</h4>
+            <h6 class="font-weight-bold blue-text my-3">Web Designer</h6>
+            <p class="font-weight-normal dark-grey-text">
+              <mdb-icon fas icon="quote-left" class="pr-2"></mdb-icon>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+              eos id
+              officiis hic tenetur quae quaerat
+              ad velit ab hic tenetur.</p>
+            <!--Rating-->
+            <div class="orange-text">
+              <mdb-icon *ngIf="element.rating >= 1" fas icon="star"> </mdb-icon>
+              <mdb-icon *ngIf="element.rating >= 2" fas icon="star"> </mdb-icon>
+              <mdb-icon *ngIf="element.rating >= 3" fas icon="star"> </mdb-icon>
+              <mdb-icon *ngIf="element.rating >= 4" fas icon="star"> </mdb-icon>
+              <mdb-icon *ngIf="element.rating >= 5" fas icon="star"> </mdb-icon>
+            </div>
+          </div>
+    
+        </div>
+        <!--Grid column-->
+      </ng-container>
+  
+    </div>
+    <!--Grid row-->
+  
+  </section>
+  
+  <div class="testi-btn text-center">
+      <button mdbBtn type="button" (click)="openDialog()" color="primary" [rounded]="true" [outline]="true" style="border-radius: 30px;" mdbWavesEffect>Add testimonial</button>
+  </div>
+</div>
+
+

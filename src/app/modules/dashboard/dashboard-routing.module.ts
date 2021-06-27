@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TestimonialsComponent } from '../dashboard/testimonials/testimonials.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { GetCertificatesRequestsComponent } from './certificates/get-certificates-requests/get-certificates-requests.component';
 import { CourseDetialsComponent } from './courses/course-detials/course-detials.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'certificates-requests',
     component: GetCertificatesRequestsComponent
+  },
+  {
+    path: 'testimonials',
+    component: TestimonialsComponent
   }
 
 ];

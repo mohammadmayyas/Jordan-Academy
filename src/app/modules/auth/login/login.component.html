@@ -12,12 +12,12 @@
             <div class="col-md-6  registerForm">
                 <h1>{{"Login" | translate}}</h1>
                 <form [formGroup]="loginForm" (ngSubmit)= "onSubmit()">
-                    <mat-form-field class="registerInput {{currentLang}}" appearance="standard" class="loginInput">
+                    <mat-form-field class="loginInput {{currentLang}}" appearance="standard">
                         <mat-label>{{"UserName" | translate}}</mat-label>
                         <input matInput type="text" formControlName="userName">
                         <mat-error *ngIf="loginForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
                     </mat-form-field>
-                    <mat-form-field class="registerInput {{currentLang}}" appearance="standard" class="loginInput">
+                    <mat-form-field class="loginInput {{currentLang}}" appearance="standard">
                         <mat-label>{{"Password" | translate}}</mat-label>
                         <input matInput type="password" formControlName="password">
                         <mat-error *ngIf="loginForm.controls.password.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Password" | translate}}</mat-error>

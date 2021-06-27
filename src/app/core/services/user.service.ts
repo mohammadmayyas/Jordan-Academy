@@ -4,8 +4,6 @@ import { environment as env} from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { User} from 'src/app/core/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +19,19 @@ export class UserService {
   
   getAllUsers(){
     return this.http.get(`${env.apiRoot}/api/User/GetAllUsers`);
+  }
+
+  getAllUsersWithRoles(){
+    return this.http.get(`${env.apiRoot}/api/User/GetAllUsers`);
+  }
+
+  updateUserRoles(userRoles: any[]){
+    this.spinner.show();
+    return this.http.post(`${env.apiRoot}/api/User/UpdateUserRoles`, userRoles).subscribe((res : any) => {
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+    });
   }
 
   deleteUser(userId: number){

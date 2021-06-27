@@ -8,8 +8,10 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
 
   private roleIdSource = new BehaviorSubject<number>(0);
-  currentroleId = this.roleIdSource.asObservable();
-  rolePermissions: any[]= []
+  currentRoleId = this.roleIdSource.asObservable();
+
+  private userIdSource = new BehaviorSubject<number>(0);
+  currentUserId = this.userIdSource.asObservable();
 
   private coursesListSource = new BehaviorSubject<any[]>([]);
   currentCoursesList = this.coursesListSource.asObservable();
@@ -34,6 +36,10 @@ export class SharedService {
 
   onRoleIdChange(roleId: number){
     this.roleIdSource.next(roleId);
+  }
+
+  onUserIdChange(userId: number){
+    this.userIdSource.next(userId);
   }
 
   onCoursesListChange(coursesList: any[]){

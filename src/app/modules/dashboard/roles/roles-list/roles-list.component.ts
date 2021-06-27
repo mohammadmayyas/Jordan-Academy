@@ -44,7 +44,7 @@ export class RolesListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openUpdatePermissionsDialog(roleId: number){
+  openUpdateRolePermissionsDialog(roleId: number){
     this.dialog.open(RolePermissionsComponent);
     this.sharedService.onRoleIdChange(roleId);
   }

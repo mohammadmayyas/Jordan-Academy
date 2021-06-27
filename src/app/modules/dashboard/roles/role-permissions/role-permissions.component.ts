@@ -1,13 +1,18 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { rolePermissions } from 'src/app/core/interfaces/rolePermissions';
 import { Router } from '@angular/router';
 
+export class RolePermissions{
+  roleId: number ;
+  permissionId: number;
+  constructor(roleId: number, permissionId: number){
+    this.roleId = roleId;
+    this.permissionId = permissionId;
+  }
+}
 
 @Component({
   selector: 'app-role-permissions',
@@ -17,25 +22,15 @@ import { Router } from '@angular/router';
 export class RolePermissionsComponent implements OnInit {
 
   permissionsList: any[] = [];
-  rolesWithPermissinsList: any[] = [];
   displayedColumns: string[] = ['Permission', 'Checkbox'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   roleId: number = 0;
   rolesList: any[] = [];
   rolePermissions: any[] = [];
-  isChecked: boolean = false;
 
-  roleForm = new FormGroup({
-    roleName: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(25)]),
-  })
   constructor( 
     private rolesPermissionsService: RolesPermissionsService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialog: MatDialogRef<RolePermissionsComponent>,
     private rolesPermissionService: RolesPermissionsService,
     private sharedService: SharedService,
     private router: Router
@@ -45,7 +40,7 @@ export class RolePermissionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPermissions();
-    this.sharedService.currentroleId.subscribe(roleId => this.roleId = roleId);
+    this.sharedService.currentRoleId.subscribe(roleId => this.roleId = roleId);
   }
 
 
@@ -77,7 +72,7 @@ export class RolePermissionsComponent implements OnInit {
     if(index >= 0)
       this.rolePermissions.splice(index, 1);
     else
-      this.rolePermissions.push(new rolePermissions(this.roleId, permissionId));
+      this.rolePermissions.push(new RolePermissions(this.roleId, permissionId));
     console.log(this.rolePermissions);
   }
 

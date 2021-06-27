@@ -11,7 +11,14 @@ import { LangService } from 'src/app/core/services/lang.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({});
+  loginForm = new FormGroup({
+    userName: new FormControl('', [
+      Validators.required,
+    ]),       
+    password: new FormControl('', [
+      Validators.required,
+    ]),
+  });
   currentLang:any;
   subscription: Subscription | undefined;
   constructor(
@@ -21,15 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentLang = localStorage.getItem('currentLang');
-    //this.subscription = this.langService.currentLang.subscribe(lang => this.currentLang = lang)
-    this.loginForm = new FormGroup({
-      userName: new FormControl('', [
-        Validators.required,
-      ]),       
-      password: new FormControl('', [
-        Validators.required,
-      ]),
-    });
   }
 
   onSubmit(){

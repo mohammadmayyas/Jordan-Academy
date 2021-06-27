@@ -63,14 +63,18 @@
       <ng-container matColumnDef="UserImage">
         <th mat-header-cell *matHeaderCellDef> User Image </th>
         <td mat-cell *matCellDef="let element">
-            <img *ngIf="element.userImagePath != ''" class="userImage" src="https://localhost:44343/{{element.userImagePath}}">
-            <img *ngIf="element.userImagePath == ''" class="userImage" src="https://localhost:44343/Uploads\Images\avatar-icon.png">
+            <img *ngIf="element.userImagePath != ''" class="userImage" src="{{apiRoot}}/{{element.userImagePath}}">
+            <img *ngIf="element.userImagePath == ''" class="userImage" src="{{apiRoot}}/Uploads\Images\avatar-icon.png">
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Operations">
         <th mat-header-cell *matHeaderCellDef> Operations </th>
-        <td mat-cell *matCellDef="let element" (click)="deleteUser(element.userId)"><i  class="fas fa-trash-alt deleteUser"></i></td>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)= "openUpdateRolePermissionsDialog(element.userId)"><i class="fas fa-edit editUserRoles"></i></button>
+          <button mat-button (click)="deleteUser(element.userId)"><i class="fas fa-trash-alt deleteUser"></i></button>
+          
+        </td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

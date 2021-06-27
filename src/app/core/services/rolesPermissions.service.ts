@@ -18,8 +18,12 @@ export class RolesPermissionsService {
     private toastr: ToastrService,
   ) { }
 
-  getAllRolesWithPermissions(){
+  getAllRoles(){
     return this.http.get(`${env.apiRoot}/api/Role`);
+  }
+
+  getAllRolesWithPermissions(){
+    return this.http.get(`${env.apiRoot}/api/Role/GetAllRolesWithPermissions`);
   }
 
   createRole(role: any){

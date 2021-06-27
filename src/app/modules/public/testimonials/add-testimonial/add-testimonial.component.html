@@ -1,0 +1,36 @@
+<div class="text-center testi-dialog">
+    <h2 mat-dialog-title>Add your testimonial</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="container">
+            <form [formGroup]="testimonialForm">
+                <mat-form-field class="testi-input">
+                    <mat-label>Comment</mat-label>
+                    <textarea type="text" matInput formControlName="comment"></textarea>
+                    <mat-error *ngIf="testimonialForm.controls.comment.hasError('required')">
+                        Comment is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="testimonialForm.controls.comment.hasError('minlength')"> </mat-error>
+                    <mat-error *ngIf="testimonialForm.controls.comment.hasError('maxlength')"> </mat-error>
+                </mat-form-field>
+                <mat-form-field class="testi-input">
+                    <mat-label>Rating</mat-label>
+                    <mat-select formControlName="rating">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" (click)="addTestimonial()" cdkFocusInitial
+            [disabled]="testimonialForm.invalid">Save</button>
+    </mat-dialog-actions>
+</div>
+
+
+

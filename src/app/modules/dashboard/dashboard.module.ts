@@ -15,7 +15,7 @@ import { CreateUpdateRoleComponent } from './roles/create-update-role/create-upd
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CreateUpdateCourseComponent } from './courses/create-update-course/create-update-course.component';
-import { GetCheckedValuePipe } from 'src/app/core/pipes/get-checked-value.pipe';
+import { GetCheckedPermissionsPipe } from 'src/app/core/pipes/get-checked-permissions.pipe';
 import { CourseDetialsComponent } from './courses/course-detials/course-detials.component';
 import { EnrollToCourseRequestsListComponent } from './courses/enroll-to-course-requests-list/enroll-to-course-requests-list.component';
 import { CertificatesComponent } from './certificates/certificates.component';
@@ -23,6 +23,10 @@ import { CertificatesListComponent } from './certificates/certificates-list/cert
 import { GetCertificatesRequestsComponent } from './certificates/get-certificates-requests/get-certificates-requests.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UpdateTraineeMarksComponent } from './courses/course-detials/update-trainee-marks/update-trainee-marks.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { TestimonialsListComponent } from './testimonials/testimonials-list/testimonials-list.component';
+import { UserRolesComponent } from './users/user-roles/user-roles.component';
+import { GetCheckedRolesPipe } from 'src/app/core/pipes/get-checked-roles.pipe';
 
 
 @NgModule({
@@ -39,13 +43,17 @@ import { UpdateTraineeMarksComponent } from './courses/course-detials/update-tra
     CoursesComponent,
     CoursesListComponent,
     CreateUpdateCourseComponent,
-    GetCheckedValuePipe,
+    GetCheckedPermissionsPipe,
     CourseDetialsComponent,
     EnrollToCourseRequestsListComponent,
     CertificatesComponent,
     CertificatesListComponent,
     GetCertificatesRequestsComponent,
     UpdateTraineeMarksComponent,
+    TestimonialsComponent,
+    TestimonialsListComponent,
+    UserRolesComponent,
+    GetCheckedRolesPipe,
   ],
   imports: [
     CommonModule,

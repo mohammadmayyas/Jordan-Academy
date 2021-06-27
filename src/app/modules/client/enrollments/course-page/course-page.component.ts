@@ -22,10 +22,12 @@ export class CertificateRequest{
   courseName: string;
   traineeFullName: string;
   userName: string;
-  constructor(traineeFullName: string, courseName: string, userName: string){
+  email: string;
+  constructor(traineeFullName: string, courseName: string, userName: string, email: string){
     this.traineeFullName = traineeFullName;
     this.courseName = courseName;
     this.userName = userName;
+    this.email = email;
   }
 }
 
@@ -77,7 +79,8 @@ export class CoursePageComponent implements OnInit {
     let user= JSON.parse(localStorage.getItem('user')!);
     let traineeName: string = user.First_Name_En + " " + user.Last_Name_En;
     let userName= user.User_Name;
-    let data = new CertificateRequest(traineeName, this.userCourseInfo.courseName, userName);
+    let email = user.Email;
+    let data = new CertificateRequest(traineeName, this.userCourseInfo.courseName, userName, email);
 
     this.userService.addCertificateRequest(data);
     this.sharedService.reload(this.router.url);
