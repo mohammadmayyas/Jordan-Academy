@@ -21,10 +21,8 @@ export class AuthService {
   login(user: any){
     this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Account/Login`, user,{ responseType: 'text' }).subscribe(res => {
-      console.log(res);
       this.spinner.hide();
       this.router.navigate([''])
-      this.toastr.success('Welcome back..');
 
       const data: any = jwt_decode(res);
       localStorage.setItem('user', JSON.stringify({ ...data }));

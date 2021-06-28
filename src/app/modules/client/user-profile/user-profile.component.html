@@ -1,0 +1,128 @@
+<div class="container" *ngIf="user">
+        <div class="row">
+            <div class="col-md-9  userForm">
+                <h1>My profile</h1>
+                <form [formGroup]="userForm" >
+
+                    <mat-form-field class="registerInput UserName {{currentLang}}" appearance="standard" >
+                        <mat-label>{{"UserName" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="userName">
+                        <mat-error *ngIf="userForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.userName.hasError('minlength')">{{"UserName" | translate}} {{"MustBeAtLeast" | translate}} 5 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.userName.hasError('maxlength')">{{"UserName" | translate}} {{"Can'tBeAbove" | translate}} 50 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput Email {{currentLang}}" appearance="standard">
+                        <mat-label>{{"Email" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="email" placeholder="Ex. pat@example.com">
+                        <mat-error *ngIf="userForm.controls.email.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Email" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.email.hasError('email')">{{"PleaseEnterValidEmail" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput FirstNameEn {{currentLang}}" appearance="standard">
+                        <mat-label>{{"FirstName" | translate}} (English)</mat-label>
+                        <input matInput type="text" formControlName="firstNameEn">
+                        <mat-error *ngIf="userForm.controls.firstNameEn.hasError('required')">{{"PleaseEnterYour" | translate}} {{"FirstName" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameEn.hasError('minlength')">{{"FirstName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameEn.hasError('maxlength')">{{"FirstName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"LastName" | translate}} (English)</mat-label>
+                        <input matInput type="text" formControlName="lastNameEn">
+                        <mat-error *ngIf="userForm.controls.lastNameEn.hasError('required')">{{"PleaseEnterYour" | translate}} {{"LastName" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.lastNameEn.hasError('minlength')">{{"LastName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.lastNameEn.hasError('maxlength')">{{"LastName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput FirstNameAr {{currentLang}}" appearance="standard">
+                        <mat-label>{{"FirstName" | translate}} (عربي)</mat-label>
+                        <input matInput type="text" formControlName="firstNameAr">
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('required')">{{"PleaseEnterYour" | translate}} {{"FirstName" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('minlength')">{{"FirstName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('maxlength')">{{"FirstName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"LastName" | translate}} (عربي)</mat-label>
+                        <input matInput type="text" formControlName="lastNameAr">
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('required')">{{"PleaseEnterYour" | translate}} {{"LastName" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('minlength')">{{"LastName" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.firstNameAr.hasError('maxlength')">{{"LastName" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="registerInput DateOfBirth {{currentLang}}" color="accent" appearance="standard">
+                        <mat-label>{{"DateOfBirth" | translate}}</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="dateOfBirth">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error *ngIf="userForm.controls.dateOfBirth.hasError('required')">{{"PleaseEnterYour" | translate}} {{"DateOfBirth" | translate}}</mat-error>
+                      </mat-form-field>
+
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"PhoneNumber" | translate}}</mat-label>
+                        <input matInput type="tel" formControlName="phoneNumber" placeholder="+962799999999">
+                        <mat-error *ngIf="userForm.controls.phoneNumber.hasError('required')">{{"PleaseEnterYour" | translate}} {{"PhoneNumber" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.phoneNumber.hasError('pattern')">Phone number is invalid</mat-error>
+                        <mat-error *ngIf="userForm.controls.phoneNumber.hasError('minlength')">{{"PhoneNumber" | translate}} {{"MustBeAtLeast" | translate}} 10 {{"Numbers" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.phoneNumber.hasError('maxlength')">{{"PhoneNumber" | translate}} {{"Can'tBeAbove" | translate}} 13 {{"Numbers" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput City {{currentLang}}" appearance="standard">
+                        <mat-label>{{"City" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="city">
+                        <mat-error *ngIf="userForm.controls.city.hasError('required')">{{"PleaseEnterYour" | translate}} {{"City" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.city.hasError('minlength')">{{"City" | translate}} {{"MustBeAtLeast" | translate}} 3 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.city.hasError('maxlength')">{{"City" | translate}} {{"Can'tBeAbove" | translate}} 25 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="registerInput RightInput {{currentLang}}" appearance="standard">
+                        <mat-label>{{"Address" | translate}}</mat-label>
+                        <input matInput type="text" formControlName="address">
+                        <mat-error *ngIf="userForm.controls.address.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Address" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.address.hasError('minlength')">{{"Address" | translate}} {{"MustBeAtLeast" | translate}} 5 {{"CharactersLong" | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.controls.address.hasError('maxlength')">{{"Address" | translate}} {{"Can'tBeAbove" | translate}} 20 {{"CharactersLong" | translate}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-radio-group class="RightInput" aria-label="Select your gender" formControlName="gender">
+                        <mat-label>{{"Gender" | translate}}</mat-label>
+                        <mat-radio-button value="Male">{{"Male" | translate}}</mat-radio-button>
+                        <mat-radio-button value="Female">{{"Female" | translate}}</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="userForm.controls.gender.hasError('required')">{{"PleaseEnterYour" | translate}} {{"Gender" | translate}}</mat-error>
+                    <div class="form-group submet">
+                        <button type="submit" mat-raised-button color="accent">{{"Register" | translate}}</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <mdb-card class="testimonial-card">
+                  <!--Bacground color-->
+                  <div class="card-up indigo lighten-1">
+                  </div>
+            
+                  <!--Avatar-->
+                  <div class="avatar mx-auto">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                  </div>
+            
+                  <mdb-card-body>
+                    <!--Name-->
+                    <mdb-card-title>
+                      <h4>Anna Doe</h4>
+                    </mdb-card-title>
+                    <hr>
+                    <!--Quotation-->
+                    <p>
+                      <mdb-icon fas icon="quote-left"></mdb-icon> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
+                      adipisci</p>
+                  </mdb-card-body>
+                </mdb-card>
+            
+              </div>
+
+        </div>
+</div>

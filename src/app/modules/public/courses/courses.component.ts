@@ -63,7 +63,6 @@ export class CoursesComponent implements OnInit {
   getAllApprovedEnrollRequests(){
     this.courseService.getAllApprovedEnrollRequests().subscribe((res: any) =>{
       this.approvedRequests= res;
-      console.log(this.approvedRequests= res);
   }, err => {
 
   });

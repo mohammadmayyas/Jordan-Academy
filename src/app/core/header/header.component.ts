@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   lastNameAr: string | undefined;
   userImagePath: string | undefined;
   apiRoot = env.apiRoot;
+  userId: number = 0;
   constructor(
     private router: Router,
     public translate: TranslateService,
@@ -28,11 +29,11 @@ export class HeaderComponent implements OnInit {
     ) { 
     this.currentLang = localStorage.getItem('currentLang') || 'en';
     this.translate.use(this.currentLang);
-    this.setFullUserName();
   }
 
   ngOnInit(): void {
-    
+    this.setFullUserName();
+    this.getUserId();
   }
 
   setCurrentLang(nextLang: string){
@@ -65,4 +66,8 @@ export class HeaderComponent implements OnInit {
     return 'en';
   }
 
+  getUserId(){
+    let user= JSON.parse(localStorage.getItem('user')!);
+    this.userId= user.User_Id;
+  }
 }

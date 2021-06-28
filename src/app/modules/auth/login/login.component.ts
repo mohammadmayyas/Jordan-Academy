@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Subscription } from 'rxjs';
-import { LangService } from 'src/app/core/services/lang.service';
+import { SharedService } from 'src/app/core/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
     ]),
   });
   currentLang:any;
-  subscription: Subscription | undefined;
   constructor(
     private authService: AuthService,
-    private langService: LangService
+    private sharedService: SharedService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -39,5 +39,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value);
+    this.sharedService.reload(this.router.url);
   }
+
 }

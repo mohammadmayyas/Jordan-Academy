@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { CoursePageComponent } from './courses/course-page/course-page.component';
 import { AddTestimonialComponent } from './testimonials/add-testimonial/add-testimonial.component';
+import { EmailComponent } from './email/email.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AddTestimonialComponent } from './testimonials/add-testimonial/add-test
     AboutComponent,
     ContactComponent,
     CoursePageComponent,
-    AddTestimonialComponent
+    AddTestimonialComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,

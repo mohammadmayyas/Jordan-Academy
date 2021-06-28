@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="jumbotron">
+        <div class="card">
+            <div class="card-header card-header-danger card-header-icon">
+            </div>
+            <div class="card-body">
+        <div class="row">
+            <div class="col-md-6 ">
+                <h1>Enter your email</h1>
+                <form [formGroup]="emailForm" (ngSubmit)="sendResetPasswordLinkToEmail()">
+                    <mat-form-field class="e-input" appearance="standard">
+                        <mat-label>New password</mat-label>
+                        <input matInput type="text" formControlName="email">
+                        <mat-error *ngIf="emailForm.controls.email.hasError('required')">Email required</mat-error>
+                        <mat-error *ngIf="emailForm.controls.email.hasError('email')">Email not valid</mat-error>
+                    </mat-form-field>
+                    <div class="form-group submet">
+                        <button mat-raised-button color="accent" [disabled]="emailForm.invalid">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+
+

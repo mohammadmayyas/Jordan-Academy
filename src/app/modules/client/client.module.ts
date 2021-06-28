@@ -6,12 +6,16 @@ import { EnrollmentsComponent } from './enrollments/enrollments.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { CoursePageComponent } from './enrollments/course-page/course-page.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
     EnrollmentsComponent,
-    CoursePageComponent
+    CoursePageComponent,
+    ForgotPasswordComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

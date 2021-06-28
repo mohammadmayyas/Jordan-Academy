@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CoursePageComponent } from './courses/course-page/course-page.component';
 import { CoursesComponent } from './courses/courses.component';
+import { EmailComponent } from './email/email.component';
 import { HomeComponent } from './home/home.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'course-page/:courseId',
     component: CoursePageComponent
+  },
+  {
+    path: 'email',
+    component: EmailComponent
   }
   
 
