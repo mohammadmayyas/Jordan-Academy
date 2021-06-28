@@ -49,10 +49,11 @@ export class RolesPermissionsService {
   }
 
   addPermissionsToRole(rolePermissions: any){
+    this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Role/AddPermissionToRole`, rolePermissions).subscribe(res =>{
-
+      this.spinner.hide();
     }, err =>{
-
+      this.spinner.hide();
     });
   }
 

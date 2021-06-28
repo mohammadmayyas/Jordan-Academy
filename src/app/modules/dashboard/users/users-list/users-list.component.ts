@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { environment as env } from 'src/environments/environment';
 import { UserRolesComponent } from '../user-roles/user-roles.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-list',
@@ -18,24 +20,28 @@ export class UsersListComponent implements OnInit {
   usersList: any[] = [];
   dataSource = new MatTableDataSource();
   apiRoot: string = env.apiRoot;
-  
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['No', 'UserName', 'FirstNameEn', 'LastNameEn', 'Roles', 'Email', 'PhoneNumber', 'Gender', 'DateOfBirth', 'City', 'Address', 'UserImage', 'Operations'];
   constructor(
     private userService: UserService,
     private router: Router,
     private sharedService: SharedService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService
     ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.userService.getAllUsers().subscribe((res: any) => {
       this.usersList = res;
-      console.log(this.usersList);
       this.dataSource = new MatTableDataSource(this.usersList);
-      console.log(this.dataSource);
+      this.dataSource.paginator = this.paginator;
+      this.spinner.hide();
     }, err => {
-      this.toastr.error(err.error)
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   } 
 

@@ -15,23 +15,14 @@ export class SharedService {
 
   private coursesListSource = new BehaviorSubject<any[]>([]);
   currentCoursesList = this.coursesListSource.asObservable();
-  textDirection: string;
-  textAlign= 'left'
+
+  textDirection: string= 'ltr';
+  textAlign: string= 'left'
   currentLang: string;
+
   constructor(private router: Router) {
     this.currentLang = localStorage.getItem('currentLang')!;
-    if(this.currentLang == 'ar')
-    { //this.isArabic = true;
-      this.textDirection= 'rtl';
-      this.textAlign= 'right'
-      console.log(this.textDirection)
-    }
-    else
-    { //this.isArabic = false;
-      this.textDirection= 'ltr';
-      this.textAlign= 'left'
-      console.log(this.textDirection)
-    }
+    this.onLangChange(this.currentLang);
    }
 
   onRoleIdChange(roleId: number){
@@ -48,13 +39,13 @@ export class SharedService {
 
   onLangChange(lang: string){
     if(lang == 'ar')
-    { //this.isArabic = true;
+    { 
       this.textDirection= 'rtl';
       this.textAlign= 'right'
       console.log(this.textDirection)
     }
     else
-    { //this.isArabic = false;
+    {
       this.textDirection= 'ltr';
       this.textAlign= 'left'
       console.log(this.textDirection)

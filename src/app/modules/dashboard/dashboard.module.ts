@@ -27,6 +27,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { TestimonialsListComponent } from './testimonials/testimonials-list/testimonials-list.component';
 import { UserRolesComponent } from './users/user-roles/user-roles.component';
 import { GetCheckedRolesPipe } from 'src/app/core/pipes/get-checked-roles.pipe';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { GetCheckedRolesPipe } from 'src/app/core/pipes/get-checked-roles.pipe';
     TestimonialsListComponent,
     UserRolesComponent,
     GetCheckedRolesPipe,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

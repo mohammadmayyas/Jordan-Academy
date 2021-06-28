@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { DatePipe } from '@angular/common';
 import { UserService } from 'src/app/core/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-update-course',
@@ -43,7 +45,9 @@ export class CreateUpdateCourseComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     public datepipe: DatePipe,
-    private userService: UserService
+    private userService: UserService,
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -60,10 +64,13 @@ export class CreateUpdateCourseComponent implements OnInit {
   }
 
   getAllTrainers(){
+    this.spinner.show();
     this.userService.getAllTrainers().subscribe((res: any) => {
       this.trainersList= res;
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 

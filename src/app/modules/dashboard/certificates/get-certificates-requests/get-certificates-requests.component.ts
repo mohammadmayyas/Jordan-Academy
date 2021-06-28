@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { CertificateService } from 'src/app/core/services/certificate.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 export class AdminResponse{
   certificateId: number;
@@ -36,7 +37,8 @@ export class GetCertificatesRequestsComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private sharedService: SharedService,
-    private certificateService: CertificateService
+    private certificateService: CertificateService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class GetCertificatesRequestsComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 
@@ -61,19 +64,24 @@ export class GetCertificatesRequestsComponent implements OnInit {
   }
 
   rejectCertificateRequest(certificateId: number){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let userName= user.User_Name;
-    this.adminResponse = new AdminResponse(certificateId, 'Reject', userName);
-    this.userService.ResponseForGetCertificateRequest(this.adminResponse);
-    this.sharedService.reload(this.router.url);
+    let user: any= localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userName= user.User_Name;
+      this.adminResponse = new AdminResponse(certificateId, 'Reject', userName);
+      this.userService.ResponseForGetCertificateRequest(this.adminResponse);
+      this.sharedService.reload(this.router.url);
+    }
   }
 
   approveCertificateRequest(certificateId: number){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let userName= user.User_Name;
-    this.adminResponse = new AdminResponse(certificateId, 'Approve', userName);
-    this.userService.ResponseForGetCertificateRequest(this.adminResponse);
-    this.sharedService.reload(this.router.url);
+    let user: any= localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userName= user.User_Name;
+      this.adminResponse = new AdminResponse(certificateId, 'Approve', userName);
+      this.userService.ResponseForGetCertificateRequest(this.adminResponse);
+      this.sharedService.reload(this.router.url);
+    }
   }
-
 }

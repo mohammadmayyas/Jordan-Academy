@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 const shared = [
@@ -54,6 +55,7 @@ const shared = [
   MatCardModule,
   MDBBootstrapModule.forRoot(),
   Ng2SearchPipeModule,
+  MatDividerModule,
 
 ];
 

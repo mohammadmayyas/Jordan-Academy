@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/core/services/course.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -36,7 +37,8 @@ export class EnrollToCourseRequestsListComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +51,7 @@ export class EnrollToCourseRequestsListComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 

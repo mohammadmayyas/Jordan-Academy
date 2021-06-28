@@ -21,6 +21,9 @@ export class HeaderComponent implements OnInit {
   userImagePath: string | undefined;
   apiRoot = env.apiRoot;
   userId: number = 0;
+  roles: any[] = [];
+
+
   constructor(
     private router: Router,
     public translate: TranslateService,
@@ -34,6 +37,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.setFullUserName();
     this.getUserId();
+    this.getUserRoles();
   }
 
   setCurrentLang(nextLang: string){
@@ -56,7 +60,6 @@ export class HeaderComponent implements OnInit {
       this.firstNameAr = user.First_Name_Ar;
       this.lastNameAr = user.Last_Name_Ar;
       this.userImagePath = user.User_Image_Path;
-      console.log(this.userImagePath);
     }
   }
 
@@ -67,7 +70,18 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserId(){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    this.userId= user.User_Id;
+    let user: any= localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      this.userId= user.User_Id;
+    }
+  }
+
+  getUserRoles(){
+    let user: any= localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      this.roles= user.Roles;
+    }
   }
 }

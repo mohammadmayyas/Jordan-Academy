@@ -11,9 +11,8 @@ import { GetCheckedRolesPipe } from './pipes/get-checked-roles.pipe';
 @NgModule({
   declarations: [
     PageNotFoundComponent,
- //   PipesPipe,
     GetCheckedPermissionsPipe,
- GetCheckedRolesPipe
+    GetCheckedRolesPipe,
   ],
   imports: [
     CommonModule,

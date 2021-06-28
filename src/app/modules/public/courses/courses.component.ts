@@ -3,6 +3,8 @@ import * as moment from 'moment';
 import { CourseService } from 'src/app/core/services/course.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { environment as env } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-courses',
@@ -21,7 +23,9 @@ export class CoursesComponent implements OnInit {
   approvedRequests: any[] = [];
   constructor(
     public sharedService: SharedService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -30,13 +34,15 @@ export class CoursesComponent implements OnInit {
   }
 
   getAllCourses(){
+    this.spinner.show();
     this.courseService.getAllCourses().subscribe((res: any) =>{
         this.coursesList= res;
-        console.log(this.coursesList);
         this.checkIfCoursesEnrolled(this.coursesList);
         this.sharedService.onCoursesListChange(this.coursesList);
+        this.spinner.hide();
     }, err => {
-  
+        this.spinner.hide();
+        this.toaster.error("Somthing went wrong..");
     });
   }
 
@@ -61,10 +67,13 @@ export class CoursesComponent implements OnInit {
   }
 
   getAllApprovedEnrollRequests(){
+    this.spinner.show();
     this.courseService.getAllApprovedEnrollRequests().subscribe((res: any) =>{
       this.approvedRequests= res;
+      this.spinner.hide();
   }, err => {
-
+    this.toaster.error("Somthing went wrong..");
+    this.spinner.hide();
   });
   }
 

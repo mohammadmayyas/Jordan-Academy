@@ -4,6 +4,8 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export class RolePermissions{
   roleId: number ;
@@ -33,7 +35,9 @@ export class RolePermissionsComponent implements OnInit {
     private rolesPermissionsService: RolesPermissionsService,
     private rolesPermissionService: RolesPermissionsService,
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
     ) {
       this.getAllRolesWithPermissions();
     }
@@ -45,20 +49,26 @@ export class RolePermissionsComponent implements OnInit {
 
 
   getAllPermissions(){
+    this.spinner.show();
     this.rolesPermissionService.getAllPermissions().subscribe((res: any) => {
       this.permissionsList = res;
       this.dataSource = new MatTableDataSource(this.permissionsList);
       this.dataSource.paginator = this.paginator;
+      this.spinner.hide();
     }, err =>{
-
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   }
 
   getAllRolesWithPermissions(){
+    this.spinner.show();
     this.rolesPermissionsService.getAllRolesWithPermissions().subscribe((res: any) => {
       this.rolesList = res;
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   }
 

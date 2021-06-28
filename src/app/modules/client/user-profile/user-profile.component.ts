@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -87,6 +88,7 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -112,7 +114,7 @@ export class UserProfileComponent implements OnInit {
         this.userForm.controls.address.setValue(this.user.address);
         this.userImagePath = this.user.userImagePath;
     }, err => {
-
+      this.toaster.error("Somthing went wrong");
     })
   }
 
@@ -122,6 +124,7 @@ export class UserProfileComponent implements OnInit {
       this.spinner.hide();
     },err =>{
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong");
     });;
   }
 

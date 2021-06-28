@@ -9,6 +9,8 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { CreateUpdateCourseComponent } from '../create-update-course/create-update-course.component';
 import { environment as env } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-courses-list',
@@ -30,6 +32,8 @@ export class CoursesListComponent implements OnInit {
     private dialog: MatDialog,
     public datepipe: DatePipe,
     private userService: UserService,
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +43,7 @@ export class CoursesListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.coursesList);
       this.dataSource.paginator = this.paginator;
     }, err => {
-  
+      this.toaster.error("Somthing went wrong..");
     });
   }
 
@@ -95,7 +99,7 @@ export class CoursesListComponent implements OnInit {
     this.userService.getAllTrainers().subscribe((res: any) => {
       this.trainersList= res;
     }, err => {
-
+      this.toaster.error("Somthing went wrong..");
     })
   }
 }

@@ -35,10 +35,13 @@ export class UserService {
   }
 
   deleteUser(userId: number){
+    this.spinner.show();
     return this.http.delete(`${env.apiRoot}/api/User/${userId}`).subscribe(res => {
-      console.log(res);
+      this.spinner.hide();
+      this.toastr.success("User deleted successfully");
     },err =>{
-
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong!");
     });
   }
 
@@ -46,8 +49,10 @@ export class UserService {
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/User/ResponseForEnrollToCourseRequest`, data).subscribe(res => {
       this.spinner.hide();
+      this.toastr.success("User add to the course successfully");
     },err =>{
       this.spinner.hide();
+      this.toastr.error("Somthing went wrong!");
     });
   }
 
@@ -55,8 +60,10 @@ export class UserService {
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/User/ResponseForGetCertificateRequest`, data).subscribe(res => {
       this.spinner.hide();
+      this.toastr.success("Certificate sent to user successfully");
     },err =>{
       this.spinner.hide();
+      this.toastr.error("Somthing went wrong!");
     });
   }
 
@@ -96,9 +103,11 @@ export class UserService {
   forgotPassword(userId: string, data: any){
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/Account/ForgotPassword/${userId}`, data).subscribe(any => {
+      this.toastr.success("Your password changed successfully");
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toastr.error("Somthing went wrong!");
     });
   }
 

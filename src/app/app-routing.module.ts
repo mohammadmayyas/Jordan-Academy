@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -10,11 +11,12 @@ const routes: Routes = [
   },
   {
     path: 'public',
-    loadChildren: () => import("./modules/public/public.module").then(m => m.PublicModule)
+    loadChildren: () => import("./modules/public/public.module").then(m => m.PublicModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'client',
-    loadChildren: () => import("./modules/client/client.module").then(m => m.ClientModule)
+    loadChildren: () => import("./modules/client/client.module").then(m => m.ClientModule),
   },
   {
     path: 'auth',
@@ -22,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import("./modules/dashboard/dashboard.module").then(m => m.DashboardModule)
+    loadChildren: () => import("./modules/dashboard/dashboard.module").then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

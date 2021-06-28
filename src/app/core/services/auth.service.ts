@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthService {
 
+  clearTimeout: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -23,14 +24,16 @@ export class AuthService {
     return this.http.post(`${env.apiRoot}/api/Account/Login`, user,{ responseType: 'text' }).subscribe(res => {
       this.spinner.hide();
       this.router.navigate([''])
-
       const data: any = jwt_decode(res);
+      this.redirectUser(data);
       localStorage.setItem('user', JSON.stringify({ ...data }));
-      localStorage.setItem('token', res)
+      localStorage.setItem('token', res);
+      
+      let user = JSON.parse(localStorage.getItem('user')!);
+      this.autoLogout(user.exp * 1000 - new Date().getTime());
     }, err => {
       this.spinner.hide();
       this.toastr.error(err.error)
-      console.log(err);
     })
   }
 
@@ -39,23 +42,37 @@ export class AuthService {
     this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Account/Register`, user,{
         responseType: 'text' }).subscribe((res: any) => {
-      console.log(res);
       this.spinner.hide();
       this.router.navigate(['auth/login'])
       this.toastr.success('Registerd successfully');
     },err =>{
       this.spinner.hide();
-      console.log(err);
       this.toastr.error(err.error)
     })
   }
 
   logout(){
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(["public/home"]);
+    if(this.clearTimeout)
+      clearTimeout(this.clearTimeout);
   }
 
   isLoggedIn(){
     return localStorage.getItem('token');
   }
+
+  autoLogout(expirationDate: number){
+    this.clearTimeout=  setTimeout(() => {
+      this.logout();
+    }, expirationDate);
+  }
+
+  redirectUser(user: any){
+    if(user.Roles.includes("Admin")){
+      this.router.navigate(["dashboard/home"]);
+    }
+  }
+
 }

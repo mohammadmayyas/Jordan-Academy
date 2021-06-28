@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export class UserRoles{
   userId: number;
@@ -33,7 +35,9 @@ export class UserRolesComponent implements OnInit {
     private userService: UserService,
     private rolePermissionsService: RolesPermissionsService,
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -43,20 +47,26 @@ export class UserRolesComponent implements OnInit {
   }
 
   getAllUsers(){
+    this.spinner.show();
     this.userService.getAllUsers().subscribe((res: any) => {
       this.usersList = res;
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   }
 
   getAllRoles(){
+    this.spinner.show();
     this.rolePermissionsService.getAllRoles().subscribe((res: any) => {
       this.rolesList = res;
       this.dataSource = new MatTableDataSource(this.rolesList);
       this.dataSource.paginator = this.paginator;
-    }, err =>{
-
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   }
 

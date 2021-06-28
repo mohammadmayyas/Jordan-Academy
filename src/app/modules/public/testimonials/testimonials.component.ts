@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TestimonialService } from 'src/app/core/services/testimonial.service';
 import { AddTestimonialComponent } from './add-testimonial/add-testimonial.component';
 import { environment as env } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-testimonials',
@@ -16,7 +18,9 @@ export class TestimonialsComponent implements OnInit {
   apiRoot: string = env.apiRoot;
   constructor(
     private dialog: MatDialog,
-    private testimonialService: TestimonialService
+    private testimonialService: TestimonialService,
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +32,13 @@ export class TestimonialsComponent implements OnInit {
   }
 
   getAllAllowedTestimonials(){
+    this.spinner.show();
     this.testimonialService.getAllAllowedTestimonials().subscribe((res: any) => {
       this.testimonialsList= res;
-      console.log(this.testimonialsList);
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 

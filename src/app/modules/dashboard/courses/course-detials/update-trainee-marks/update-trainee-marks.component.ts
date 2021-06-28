@@ -22,9 +22,6 @@ export class UpdateTraineeMarksComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialogRef<UpdateTraineeMarksComponent>,
-    private courseService: CourseService,
-    private sharedService: SharedService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {

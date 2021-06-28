@@ -53,12 +53,15 @@ export class CoursePageComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     });
   }
 
   enrollToCourseRequest(){
     if(localStorage.getItem('token')){
-      let user = JSON.parse(localStorage.getItem('user')!);
+      let user: any =localStorage.getItem('user');
+      if(user){
+        user = JSON.parse(user);
       let userId = user.User_Id;
       this.enrollRequest = new EnrollToCourse(userId, this.course.courseId);
 
@@ -68,31 +71,38 @@ export class CoursePageComponent implements OnInit {
       this.sharedService.reload(this.router.url);
       },err =>{
         this.spinner.hide();
+        this.toaster.error("Somthing went wrong..");
       });
-    } 
-    else{
-      this.router.navigate(['auth/login']);
+      } 
+      else{
+        this.router.navigate(['auth/login']);
+      }
     }
+      
   }
 
   getAllPendingEnrollRequests(){
+    this.spinner.show();
     this.courseService.getAllPendingEnrollRequests().subscribe((res: any) => {
       this.enrollsRequestsList= res;
-      console.log(this.enrollsRequestsList)
       this.checkIfUserEnrolledToCourse();
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     });
   }
 
   checkIfUserEnrolledToCourse(){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let userId= user.User_Id;
-    this.enrollsRequestsList.forEach((element: any) => {
+    let user: any = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userId= user.User_Id;
+      this.enrollsRequestsList.forEach((element: any) => {
       if(element.courseId == this.courseId && element.userId == userId){
         this.isDisabled= true;
       }
     });
+    }
   }
-
 }

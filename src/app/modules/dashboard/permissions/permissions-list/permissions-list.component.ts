@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUpdatePermissionComponent } from '../create-update-permission/create-update-permission.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-permissions-list',
@@ -22,19 +22,23 @@ export class PermissionsListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private rolesPermissionsService: RolesPermissionsService,
-    private toastr: ToastrService,
+    private toaster: ToastrService,
     private sharedService: SharedService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.rolesPermissionsService.getAllPermissions().subscribe((res: any) =>{
       this.permissionsList = res;
       this.dataSource = new MatTableDataSource(this.permissionsList);
       this.dataSource.paginator = this.paginator;
+      this.spinner.hide();
     }, err => {
-  
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 

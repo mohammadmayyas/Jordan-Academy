@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/core/services/course.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { environment as env } from 'src/environments/environment';
@@ -29,7 +30,8 @@ export class CourseDetialsComponent implements OnInit{
     private spinner: NgxSpinnerService,
     private dialog: MatDialog,
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -45,9 +47,9 @@ export class CourseDetialsComponent implements OnInit{
       this.spinner.hide();
       this.dataSource = new MatTableDataSource(this.course);
       this.dataSource.paginator = this.paginator;
-      console.log(this.course);
     }, err => {
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     });
   }
 

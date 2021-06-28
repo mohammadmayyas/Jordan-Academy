@@ -24,49 +24,82 @@
     margin-left: 100px;
 }
 
+.ar{
+    text-align: right;
+}
+  
 
-// .navbar {
-//     background-color: transparent;
-// }
-
-// .top-nav-collapse {
-//     background-color: #4285F4;
-// }
-
-// @media only screen and (max-width: 768px) {
-//     .navbar {
-//         background-color: #4285F4;
-//     }
-// }
-
-// .navbar{
-//     justify-content: space-between;
-// }
-
-// .navbar span{
-//     cursor: pointer;
-// }
+.sidebar *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    //font-family: arial
+}
 
 
-// .client span {
-//     padding-right: 2rem;
-//     font-size: 25px;
-// }
+.wrapper {
+    position: relative
+}
 
-// span {
-//     padding-right: 2rem;
-//     font-size: 25px;
-// }
+.sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #000000e0;
+    padding: 20px 0
+}
 
+.text-muted {
+    color: #adb5bd !important
+}
 
+.sidebar ul {
+    padding-bottom: 20px
+}
 
-// .lang{
-//     cursor: pointer;
-    
-// }
+.sidebar ul li a img {
+    background: #66BB6A;
+    top: 0;
+    border: none;
+    width: 20px
+}
 
-// .auth{
-//     float: right;
-//     margin-left: 250px
-// }
+.sidebar ul li {
+    padding: 15px
+}
 
+.sidebar ul li a {
+    color: #fff;
+    display: block
+}
+
+.sidebar ul li a .fas {
+    width: 30px;
+    color: #bdb8d7 !important
+}
+
+i.fas.fa-home:hover,
+i.fas.fa-file-invoice:hover,
+i.fas.fa-video:hover,
+i.fas.fa-id-badge:hover,
+i.fas.fa-external-link-alt:hover,
+i.fas.fa-code:hover,
+i.far.fa-calendar-alt:hover,
+i.far.fa-credit-card:hover {
+    color: #304FFE !important
+}
+
+.sidebar ul li a .far {
+    width: 30px;
+    color: #bdb8d7 !important
+}
+
+.sidebar ul li:hover {
+    background: #000
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none
+}

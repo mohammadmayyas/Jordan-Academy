@@ -6,6 +6,7 @@ import { GetCertificatesRequestsComponent } from './certificates/get-certificate
 import { CourseDetialsComponent } from './courses/course-detials/course-detials.component';
 import { CoursesComponent } from './courses/courses.component';
 import { EnrollToCourseRequestsListComponent } from './courses/enroll-to-course-requests-list/enroll-to-course-requests-list.component';
+import { HomeComponent } from './home/home.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { RolesComponent } from './roles/roles.component';
 import { UsersComponent } from './users/users.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'testimonials',
     component: TestimonialsComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 
 ];

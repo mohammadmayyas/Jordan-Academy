@@ -61,29 +61,37 @@ export class CoursePageComponent implements OnInit {
   }
 
   getUserCourseInfoByIds(){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let userId= user.User_Id;
-    let data = new UserCourseIds(userId, this.courseId);
-
-    this.userService.getUserCourseInfoByIds(data).subscribe((res: any) => {
-      this.userCourseInfo = res;
-      console.log(this.userCourseInfo);
-      this.checkIfUserCanSendCertificateRequest();
-      this.checkIfUserAlreadySentCertificateRequest();
-    }, err => {
-
-    })
+    let user: any = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userId= user.User_Id;
+      let data = new UserCourseIds(userId, this.courseId);
+      
+      this.spinner.show();
+      this.userService.getUserCourseInfoByIds(data).subscribe((res: any) => {
+        this.userCourseInfo = res;
+        this.checkIfUserCanSendCertificateRequest();
+        this.checkIfUserAlreadySentCertificateRequest();
+        this.spinner.hide();
+      }, err => {
+        this.spinner.hide();
+        this.toaster.error("Somthing went wrong");
+      })
+    }
+  
   }
 
   addCertificateRequest(){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let traineeName: string = user.First_Name_En + " " + user.Last_Name_En;
-    let userName= user.User_Name;
-    let email = user.Email;
-    let data = new CertificateRequest(traineeName, this.userCourseInfo.courseName, userName, email);
-
-    this.userService.addCertificateRequest(data);
+    let user: any = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let traineeName: string = user.First_Name_En + " " + user.Last_Name_En;
+      let userName= user.User_Name;
+      let email = user.Email;
+      let data = new CertificateRequest(traineeName, this.userCourseInfo.courseName, userName, email);
+      this.userService.addCertificateRequest(data);
     this.sharedService.reload(this.router.url);
+    }
   }
 
   checkIfUserCanSendCertificateRequest(){
@@ -106,7 +114,7 @@ export class CoursePageComponent implements OnInit {
       }
         
     }, err => {
-
+      this.toaster.error("Somthing went wrong");
     })
   }
 

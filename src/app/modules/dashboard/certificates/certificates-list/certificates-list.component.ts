@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CertificateService } from 'src/app/core/services/certificate.service';
 import { SharedService } from 'src/app/core/services/shared.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-certificates-list',
@@ -19,7 +21,9 @@ export class CertificatesListComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router,
-    private certificateService: CertificateService
+    private certificateService: CertificateService,
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -27,13 +31,15 @@ export class CertificatesListComponent implements OnInit {
   }
 
   getAllCertificates(){
+    this.spinner.show();
     this.certificateService.getAllCertificates().subscribe((res: any) => {
       this.certificatesList = res;
       this.dataSource = new MatTableDataSource(this.certificatesList);
       this.dataSource.paginator = this.paginator;
-      console.log(this.certificatesList);
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
     })
   }
 

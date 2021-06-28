@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import {  MatDialog } from '@angular/material/dialog';
 import { RolePermissionsComponent } from '../role-permissions/role-permissions.component';
 import { ToastrService } from 'ngx-toastr';
 import { CreateUpdateRoleComponent } from '../create-update-role/create-update-role.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-roles-list',
@@ -25,16 +25,20 @@ export class RolesListComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService
     ) { }
 
 
   ngOnInit(): void {
+    this.spinner.show();
     this.rolesPermissionsService.getAllRolesWithPermissions().subscribe((res: any) => {
       this.rolesList = res;
       this.dataSource = new MatTableDataSource(this.rolesList);
+      this.spinner.hide();
     }, err => {
-      //this.toastr.error(err.error)
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     });
   }
 

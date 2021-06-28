@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/core/services/shared.service';
 import { TestimonialService } from 'src/app/core/services/testimonial.service';
 import { environment as env } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export class Testimonial{
   testimonialId: number;
@@ -32,6 +34,8 @@ export class TestimonialsListComponent implements OnInit {
     private testimonialService: TestimonialService,
     private sharedService: SharedService,
     private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -39,12 +43,15 @@ export class TestimonialsListComponent implements OnInit {
   }
 
   getAllTestimonials(){
+    this.spinner.show();
     this.testimonialService.getAllTestimonials().subscribe((res: any) => {
       this.testimonialsList = res;
       this.dataSource = new MatTableDataSource(this.testimonialsList);
       this.dataSource.paginator = this.paginator;
+      this.spinner.hide();
     }, err => {
-
+      this.spinner.hide();
+      this.toastr.error("Somthing went wrong..");
     })
   }
 
