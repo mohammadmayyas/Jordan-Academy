@@ -72,6 +72,7 @@ export class CoursePageComponent implements OnInit {
       },err =>{
         this.spinner.hide();
         this.toaster.error("Somthing went wrong..");
+        console.log(err);
       });
       } 
       else{
@@ -82,15 +83,18 @@ export class CoursePageComponent implements OnInit {
   }
 
   getAllPendingEnrollRequests(){
-    this.spinner.show();
-    this.courseService.getAllPendingEnrollRequests().subscribe((res: any) => {
+    if(this.sharedService.isLoggedIn()){
+      this.spinner.show();
+      this.courseService.getAllPendingEnrollRequests().subscribe((res: any) => {
       this.enrollsRequestsList= res;
       this.checkIfUserEnrolledToCourse();
       this.spinner.hide();
-    }, err => {
-      this.spinner.hide();
-      this.toaster.error("Somthing went wrong..");
-    });
+      }, err => {
+        this.spinner.hide();
+        this.toaster.error("Somthing went wrong..");
+      });
+    }
+    
   }
 
   checkIfUserEnrolledToCourse(){
@@ -103,6 +107,16 @@ export class CoursePageComponent implements OnInit {
         this.isDisabled= true;
       }
     });
+    }
+  }
+
+  isLoggedIn(){
+    if(this.sharedService.isLoggedIn()){
+      this.enrollToCourseRequest(); 
+    }
+    else{
+      this.toaster.warning("Please login with your account");
+      this.router.navigate(["../auth/login"]);
     }
   }
 }

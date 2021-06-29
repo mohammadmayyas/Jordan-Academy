@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { environment as env } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-courses',
@@ -20,16 +21,17 @@ export class CoursesComponent implements OnInit {
   searchEndDate: any;
   totalCount: string = '';
   pageCount: string = '';
-  approvedRequests: any[] = [];
+  userCourses: any[] = [];
   constructor(
     public sharedService: SharedService,
     private courseService: CourseService,
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private userService: UserService
     ) { }
 
   ngOnInit(): void {
-    this.getAllApprovedEnrollRequests();
+    //this.getAllApprovedEnrollRequests();
     this.getAllCourses();
   }
 
@@ -37,9 +39,10 @@ export class CoursesComponent implements OnInit {
     this.spinner.show();
     this.courseService.getAllCourses().subscribe((res: any) =>{
         this.coursesList= res;
-        this.checkIfCoursesEnrolled(this.coursesList);
+        this.getAllUserCourses();
         this.sharedService.onCoursesListChange(this.coursesList);
         this.spinner.hide();
+        console.log(this.coursesList);
     }, err => {
         this.spinner.hide();
         this.toaster.error("Somthing went wrong..");
@@ -66,28 +69,35 @@ export class CoursesComponent implements OnInit {
     this.coursesList= fliterdCoursesList;
   }
 
-  getAllApprovedEnrollRequests(){
-    this.spinner.show();
-    this.courseService.getAllApprovedEnrollRequests().subscribe((res: any) =>{
-      this.approvedRequests= res;
-      this.spinner.hide();
-  }, err => {
-    this.toaster.error("Somthing went wrong..");
-    this.spinner.hide();
-  });
+  getAllUserCourses(){
+    let user: any = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userId= user.User_Id;
+      this.spinner.show();
+      this.userService.getAllUserCourses(userId).subscribe((res: any) =>{
+        this.userCourses= res;
+        this.spinner.hide();
+        console.log(this.userCourses);
+        this.filterCoursesListFromUserCourses();
+      }, err => {
+        this.toaster.error("Somthing went wrong..");
+        this.spinner.hide();
+      });
+    }
+    
   }
 
-  checkIfCoursesEnrolled(coursesList: any[]){
-    let user= JSON.parse(localStorage.getItem('user')!);
-    let userId= user.User_Id;
-    let userCourses= this.approvedRequests.filter(m => m.userId == userId);
-    console.log(coursesList.filter(g => g.courseId != userCourses[0].courseId));
-    // userCourses.forEach((element: any) => {
-    //   coursesList.forEach((element2: any) => {
-    //     if(element.courseId != element2.courseId)
-    //       console.log(coursesList);
-    //   });
-    // });
+  filterCoursesListFromUserCourses(){
+    if(this.userCourses){
+      this.userCourses.forEach((element: any) => {
+        this.coursesList.forEach((element2: any, index) => {
+          if(element.courseId === element2.courseId){
+            this.coursesList.splice(index,1);
+          }
+        });
+      });
+    }
   }
 
 }

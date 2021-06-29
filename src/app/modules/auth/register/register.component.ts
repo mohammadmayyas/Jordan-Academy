@@ -85,7 +85,6 @@ export class RegisterComponent implements OnInit {
       userImage: new FormControl('', []),
       password: new FormControl('', [
         Validators.required,
-        //Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(8), 
         Validators.maxLength(200)
       ]),

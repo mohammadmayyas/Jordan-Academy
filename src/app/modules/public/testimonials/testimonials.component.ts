@@ -5,6 +5,8 @@ import { AddTestimonialComponent } from './add-testimonial/add-testimonial.compo
 import { environment as env } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from 'src/app/core/services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-testimonials',
@@ -20,11 +22,23 @@ export class TestimonialsComponent implements OnInit {
     private dialog: MatDialog,
     private testimonialService: TestimonialService,
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private sharedService: SharedService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.getAllAllowedTestimonials();
+  }
+
+  isLoggedIn(){
+    if(this.sharedService.isLoggedIn())
+      this.openDialog()
+    else{
+      this.toaster.warning("Please login with your account");
+      this.router.navigate(["../auth/login"]);
+    }
+      
   }
 
   openDialog(){

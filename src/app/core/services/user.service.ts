@@ -21,6 +21,10 @@ export class UserService {
     return this.http.get(`${env.apiRoot}/api/User/GetAllUsers`);
   }
 
+  getFullUserNameById(userId: number){
+    return this.http.get(`${env.apiRoot}/api/User/GetFullUserNameById/${userId}`);
+  }
+
   getAllUsersWithRoles(){
     return this.http.get(`${env.apiRoot}/api/User/GetAllUsers`);
   }
@@ -47,18 +51,22 @@ export class UserService {
 
   responsForEnrollToCourseRequest(data: any){
     this.spinner.show();
-    return this.http.put(`${env.apiRoot}/api/User/ResponseForEnrollToCourseRequest`, data).subscribe(res => {
+    return this.http.put(`${env.apiRoot}/api/User/ResponseForEnrollToCourseRequest`, data, { responseType: 'text' }).subscribe(res => {
       this.spinner.hide();
-      this.toastr.success("User add to the course successfully");
+      if(res == "Successfully added")
+        this.toastr.success("User add to the course successfully");
+      else if(res == "Successfully rejected")
+        this.toastr.success("User request rejected successfully");
     },err =>{
       this.spinner.hide();
       this.toastr.error("Somthing went wrong!");
+      console.log(err);
     });
   }
 
   ResponseForGetCertificateRequest(data: any){
     this.spinner.show();
-    return this.http.put(`${env.apiRoot}/api/User/ResponseForGetCertificateRequest`, data).subscribe(res => {
+    return this.http.put(`${env.apiRoot}/api/User/ResponseForGetCertificateRequest`, data, { responseType: 'text' }).subscribe(res => {
       this.spinner.hide();
       this.toastr.success("Certificate sent to user successfully");
     },err =>{
@@ -68,7 +76,7 @@ export class UserService {
   }
 
   enrollToCourseRequest(data: any){
-    return this.http.post(`${env.apiRoot}/api/User/AddEnrollToCourseRequest`, data);
+    return this.http.post(`${env.apiRoot}/api/User/AddEnrollToCourseRequest`, data,{ responseType: 'text' });
   }
 
   getAllTrainers(){
@@ -115,7 +123,7 @@ export class UserService {
     this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Account/sendResetPasswordLinkToEmail`, data).subscribe(any => {
       this.spinner.hide();
-      this.toastr.success("We sent the password reset link to youre email")
+      this.toastr.success("Password reset link sent to youre email")
     }, err => {
       this.spinner.hide();
       this.toastr.error("Email not exist");
@@ -124,5 +132,9 @@ export class UserService {
 
   getAllUserInfoById(userId: string){
     return this.http.get(`${env.apiRoot}/api/User/UserInfo/${userId}`);
+  }
+
+  getAllUserCourses(userId: number){
+    return this.http.get(`${env.apiRoot}/api/User/GetAllUserCourses/${userId}`);
   }
 }

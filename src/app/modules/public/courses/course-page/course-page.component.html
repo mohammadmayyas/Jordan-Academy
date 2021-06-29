@@ -17,7 +17,7 @@
                 <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
                 {{course.startDate | date:'shortDate'}} - {{course.endDate | date:'shortDate'}}
             </h3>
-            <button mdbBtn type="button" [disabled]="isDisabled" (click)="enrollToCourseRequest()" color="danger" class="hoverable" [outline]="true" mdbWavesEffect>Enroll now</button>
+            <button mdbBtn type="button" [disabled]="isDisabled" (click)="isLoggedIn()" color="danger" class="hoverable" [outline]="true" mdbWavesEffect>Enroll now</button>
         </div>
     </div>
 </div>

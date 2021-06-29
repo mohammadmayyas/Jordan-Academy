@@ -9,7 +9,7 @@
 }
 
 .info-section{
-    height: 600px;
+    height: 650px;
 }
 
 .courses-section{
@@ -19,3 +19,53 @@
 .course-card{
     height: 300px;
 }
+
+h1{
+    font-size: 50px;
+    font-family:  'Times New Roman', serif;
+}
+
+h3{
+    font-size: 20px;
+    //font-family:  'Times New Roman', serif;
+}
+
+h4{
+    font-size: 18px;
+}
+
+// p{
+//     font-size: 20px;
+// }
+
+.entro-title{
+    font-weight: 700;
+    margin-top: 50px;
+    line-height: 1.2em;
+}
+
+.entro-p{
+    margin-top: 30px;
+}
+
+.courses-title{
+    margin-bottom: 75px;
+    margin-top: 85px;
+}
+
+.spred-section{
+    height: 650px;
+    width: 100%;
+    background-image: url("../../../../assets/images/Growth-mindset.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.spons-section h2{
+    font-size: 25px;
+    font-family:  'Times New Roman', serif;
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+

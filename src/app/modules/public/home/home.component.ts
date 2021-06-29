@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   getFirstThreeCourses(){
     this.spinner.show();
     this.courseService.getAllCourses().subscribe((res: any) =>{
-      for(var i=0; i<3; i++){
+      for(var i=0; i<4; i++){
         this.coursesList.push(res[i]);
       };
       this.spinner.hide();

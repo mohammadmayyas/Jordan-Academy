@@ -1,31 +1,32 @@
 <div class="container">
-    <div class="jumbotron">
-        <div class="card">
-            <div class="card-header card-header-danger card-header-icon">
-            </div>
-            <div class="card-body">
-        <div class="row">
-            <div class="col-md-6 ">
+    <div class="card-div text-center col-md-7 ml-10">
+        <mdb-card class="z-depth-5">
+            <mdb-card-header class="danger-color-dark">
+               
+            </mdb-card-header>
+            <!--Card content-->
+            <mdb-card-body>
+          
+              <!--Title-->
+              <mdb-card-title>
                 <h1>Enter your email</h1>
+              </mdb-card-title>
+          
+              <mdb-card-text> 
                 <form [formGroup]="emailForm" (ngSubmit)="sendResetPasswordLinkToEmail()">
-                    <mat-form-field class="e-input" appearance="standard">
-                        <mat-label>New password</mat-label>
+                    <mat-form-field class="col-md-9" appearance="standard">
+                        <mat-label>Email</mat-label>
                         <input matInput type="text" formControlName="email">
                         <mat-error *ngIf="emailForm.controls.email.hasError('required')">Email required</mat-error>
                         <mat-error *ngIf="emailForm.controls.email.hasError('email')">Email not valid</mat-error>
                     </mat-form-field>
-                    <div class="form-group submet">
-                        <button mat-raised-button color="accent" [disabled]="emailForm.invalid">Send</button>
-                    </div>
+                    <button mdbBtn class="submit col-md-3" type="submit" color="danger" [disabled]="emailForm.invalid" [outline]="true" mdbWavesEffect>Send</button>
                 </form>
-            </div>
-        </div>
+              </mdb-card-text>
+          
+            </mdb-card-body>
+          </mdb-card>
     </div>
 </div>
-
-    </div>
-</div>
-
-
 
 

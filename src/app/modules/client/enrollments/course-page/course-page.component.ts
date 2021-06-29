@@ -44,6 +44,7 @@ export class CoursePageComponent implements OnInit {
   apiRoot: string = env.apiRoot;
   isRequestSent: boolean= false;
   certificateRequests: any[]= [];
+  trainer: any = '';
   constructor(
     private route: ActivatedRoute,
     private sharedService: SharedService,
@@ -72,11 +73,12 @@ export class CoursePageComponent implements OnInit {
         this.userCourseInfo = res;
         this.checkIfUserCanSendCertificateRequest();
         this.checkIfUserAlreadySentCertificateRequest();
+        this.getFullUserNameById(this.userCourseInfo.trainerId)
         this.spinner.hide();
       }, err => {
         this.spinner.hide();
         this.toaster.error("Somthing went wrong");
-      })
+      });
     }
   
   }
@@ -115,7 +117,15 @@ export class CoursePageComponent implements OnInit {
         
     }, err => {
       this.toaster.error("Somthing went wrong");
-    })
+    });
+  }
+
+  getFullUserNameById(userId: number){
+    this.userService.getFullUserNameById(userId).subscribe((res: any) => {
+      this.trainer = res;
+    }, err => {
+      this.toaster.error("Somthing went wrong");
+    });
   }
 
 }

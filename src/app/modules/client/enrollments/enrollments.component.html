@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" >
         <ng-container *ngFor="let element of enrollmentsList">
-            <div class="col-md-3 animated slideInRight wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
+            <div class="col-md-3 animated pulse wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
               <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
                 <div class="z-depth-3 view-cascade overlay waves-light" style="border-radius: 10px;" mdbWavesEffect>
                   <mdb-card-img class="courseImage" src="{{apiRoot}}/{{element.courseImagePath}}"></mdb-card-img>

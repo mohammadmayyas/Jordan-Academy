@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
         if(state.url.indexOf('dashboard') >= 0){
           if (user) {
             user = JSON.parse(user);
-            if (user.Roles.includes('Admin') || user.Roles.includes('Trainer')) {
+            if (user.Roles.includes(Role.Admin) || user.Roles.includes(Role.Trainer)) {
               return true;
             } else {
               this.route.navigate(['']);

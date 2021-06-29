@@ -29,6 +29,7 @@ export class EmailComponent implements OnInit {
 
   sendResetPasswordLinkToEmail(){
     this.userService.sendResetPasswordLinkToEmail(this.emailForm.value);
+    console.log(this.emailForm.value);
     this.sharedService.reload(this.router.url);
   }
 

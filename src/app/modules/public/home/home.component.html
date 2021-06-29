@@ -1,161 +1,119 @@
-<!-- <div class="col-md-4">
-    
-    <mdb-card [cascade]="true" [narrower]="true">
-
-      <div class="z-depth-3 view-cascade overlay waves-light" mdbWavesEffect>
-        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+<div [ngStyle]="{'direction': sharedService.textDirection}">
+  <section class="container cover-section">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="entro-title">{{"entro-title" | translate}}</h1>
+        <h3 class="entro-p">{{"entro-p" | translate}}</h3>
       </div>
-
-      <mdb-card-body [cascade]="true" class="text-center pb-0 px-0">
+      <div class="col-md-6">
+        <img src="../../../../assets/images/home-cover.png" class="cover animated zoomIn wow" data-wow-duration="3s">
+      </div>
+    </div>
   
-        <h5 class="pink-text">
-          <mdb-icon fas icon="utensils"></mdb-icon> Culinary</h5>
-        
-        <h4 class="card-title">Cheat day inspirations</h4>
-       
-
-        <mdb-card-text>
-          Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem
-          aperiam.
-        </mdb-card-text>
-
-        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Button</a>
-
-       
-        <div class="card-footer text-muted text-center mt-4">
-          2 days ago
-        </div>
-
-      </mdb-card-body>
-      
-
-    </mdb-card>
-
-  </div> -->
-<section class="container cover-section">
-<img src="../../../../assets/images/home-cover.png" class="cover animated zoomIn wow" data-wow-duration="3s">
-</section>
-
-
-<section class="text-center jumbotron info-section">
-
-  <h2 class="h1 py-5 font-weight-bold">Why is it so great?</h2>
-  <p class="px-5 mb-5 pb-3 lead grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam.</p>
-
-  <div class="row">
-    <div class="col-md-4">
-      <mdb-icon fas icon="chart-area" size="3x" class="red-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Analytics</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
-    </div>
-
-    <div class="col-md-4">
-      <mdb-icon fas icon="book" size="3x" class="cyan-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Tutorials</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
-    </div>
-
-    <div class="col-md-4">
-      <mdb-icon far icon="comments" size="3x" class="orange-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Support</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="container courses-section">
-  <h1>Check out our courses</h1>
-  <div class="row">
-    <ng-container *ngFor="let element of coursesList">
-      <div class="col-md-3 animated zoomIn wow" data-wow-duration="3s" data-wow-delay="0.7">
-        <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
-          <div class="z-depth-3 view-cascade overlay waves-light" mdbWavesEffect>
-            <mdb-card-img src="{{apiRoot}}/{{element.courseImagePath}}"></mdb-card-img>
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-    
-          <mdb-card-body style="margin-left: 15px;"  [cascade]="true" class=" pb-0 px-0">
-            <h3 class="red-text">{{element.courseName}}</h3>
-            <h5 class="card-title">
-                <mdb-icon fas icon="level-up-alt" style="color: red"></mdb-icon>
-                {{element.courseLevel}}</h5>
-            <h5 class="card-title">
-                <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
-                {{element.startDate | date:'shortDate'}} - {{element.endDate | date:'shortDate'}}</h5>
-    
-            <a routerLink="../courses" class="waves-light red-text" style="margin-left: 70px; margin-top: 15px;">
-              See more <mdb-icon fas icon="chevron-right"></mdb-icon><mdb-icon fas icon="chevron-right"></mdb-icon>
-            </a>
-          </mdb-card-body>
-        </mdb-card>
+  </section>
+  
+  
+  <section class="text-center jumbotron info-section">
+  
+    <h1 class="h1 py-5 font-weight-bold">{{"why-us" | translate}}</h1>
+    <p class="px-5 mb-5 pb-3 lead grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam.</p>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <mdb-icon fas icon="chart-area" size="3x" class="red-text"></mdb-icon>
+        <h5 class="font-weight-bold mt-3">Analytics</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
       </div>
-    </ng-container>
-  </div>
-</section>
-
-
-<section class="text-center jumbotron info-section">
-
-  <h2 class="h1 py-5 font-weight-bold">Why is it so great?</h2>
-  <p class="px-5 mb-5 pb-3 lead grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-    eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam.</p>
-
-  <div class="row">
-    <div class="col-md-4">
-      <mdb-icon fas icon="chart-area" size="3x" class="red-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Analytics</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
+  
+      <div class="col-md-4">
+        <mdb-icon fas icon="book" size="3x" class="cyan-text"></mdb-icon>
+        <h5 class="font-weight-bold mt-3">Tutorials</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
+      </div>
+  
+      <div class="col-md-4">
+        <mdb-icon far icon="comments" size="3x" class="orange-text"></mdb-icon>
+        <h5 class="font-weight-bold mt-3">Support</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
+      </div>
     </div>
-
-    <div class="col-md-4">
-      <mdb-icon fas icon="book" size="3x" class="cyan-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Tutorials</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
+  </section>
+  
+  <section class="container courses-section text-center">
+    <h1 class="courses-title">{{"CheckOutOurCourses" | translate}}</h1>
+    <div class="row courses">
+      <ng-container *ngFor="let element of coursesList">
+        <div class="col-md-3 course-card animated zoomIn wow" data-wow-duration="3s" data-wow-delay="0.7">
+          <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
+            <div class="z-depth-3 view-cascade overlay waves-light" mdbWavesEffect>
+              <mdb-card-img src="{{apiRoot}}/{{element.courseImagePath}}"></mdb-card-img>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+      
+            <mdb-card-body style="margin-left: 15px;"  [cascade]="true" class=" pb-0 px-0">
+              <h4 class="red-text">{{element.courseName}}</h4>
+              <h5 class="card-title">
+                  <mdb-icon fas icon="level-up-alt" style="color: red"></mdb-icon>
+                  {{element.courseLevel}}</h5>
+              <h5 class="card-title">
+                  <mdb-icon far icon="calendar-alt" style="color: red"></mdb-icon>
+                  {{element.startDate | date:'shortDate'}} - {{element.endDate | date:'shortDate'}}</h5>
+      
+              <a routerLink="../courses" class="waves-light red-text" style="margin-left: 70px; margin-top: 15px;">
+                See more <mdb-icon fas icon="chevron-right"></mdb-icon><mdb-icon fas icon="chevron-right"></mdb-icon>
+              </a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </ng-container>
     </div>
-
-    <div class="col-md-4">
-      <mdb-icon far icon="comments" size="3x" class="orange-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Support</h5>
-      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
-        aperiam
-        minima assumenda
-        deleniti hic.
-      </p>
-    </div>
-  </div>
-</section>
-
-
+  </section>
+  
+  
+  <section class="text-center spred-section">
+  
+  </section>
+  
+  <section class="text-center container spons-section">
+    <h2>{{"spons-title" | translate}}</h2>
+    <mdb-carousel [isControls]="false" [animation]="'slide'">
+    <mdb-carousel-item >
+      <img class="d-block w-16" src="../../../../assets/images/sponser1.png" alt="First slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser2.png" alt="First slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser3.png" alt="First slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser4.png" alt="First slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser5.png" alt="Second slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser6.png" alt="Second slide">
+    </mdb-carousel-item>
+    <mdb-carousel-item >
+      <img class="d-block w-16" src="../../../../assets/images/sponser1.png" alt="Second slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser2.png" alt="Second slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser5.png" alt="Second slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser6.png" alt="Second slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser1.png" alt="First slide">
+      <img class="d-block w-16" src="../../../../assets/images/sponser2.png" alt="Second slide">
+    </mdb-carousel-item>
+  </mdb-carousel>
+  </section>
+  
+</div>
 
 
 

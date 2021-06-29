@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-profile',
@@ -69,18 +70,19 @@ export class UserProfileComponent implements OnInit {
       Validators.required,
       Validators.minLength(5), 
       Validators.maxLength(200)
-    ]),
-    userImage: new FormControl('', []),
+    ])
   });
 
   resetPasswordForm = new FormGroup({
     oldPassword: new FormControl('', [
-      Validators.required,
+      Validators.required
     ]),       
     newPassword: new FormControl('', [
       Validators.required,
+      Validators.minLength(8), 
+      Validators.maxLength(200)
     ]),
-    newPasswordConfirmed: new FormControl('', [
+    confirmedPassword: new FormControl('', [
       Validators.required,
     ])
   });
@@ -88,7 +90,8 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    public translate: TranslateService,
   ) { }
 
   ngOnInit(): void {

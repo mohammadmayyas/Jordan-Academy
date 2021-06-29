@@ -18,10 +18,6 @@
                     <input matInput type="text" formControlName="userName">
                     <mat-error *ngIf="contactForm.controls.userName.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
                 </mat-form-field>
-              <!-- <div class="md-form mb-0">
-                <input formControlName="userName" type="text" id="contact-name" class="form-control" mdbInput>
-                <label for="contact-name" class="">Your name</label>
-              </div> -->
             </div>
  
             <div class="col-md-6">
@@ -31,10 +27,6 @@
                     <mat-error *ngIf="contactForm.controls.email.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
                     <mat-error *ngIf="contactForm.controls.email.hasError('required')">Email not valid</mat-error>
                 </mat-form-field>
-              <!-- <div class="md-form mb-0">
-                <input formControlName="email" type="text" id="contact-email" class="form-control" mdbInput>
-                <label for="contact-email" class="">Your email</label>
-              </div> -->
             </div>
 
   
@@ -47,10 +39,6 @@
                     <input matInput type="text" formControlName="subject">
                     <mat-error *ngIf="contactForm.controls.subject.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
                 </mat-form-field>
-              <!-- <div class="md-form mb-0">
-                <input formControlName="subject" type="text" id="contact-Subject" class="form-control" mdbInput>
-                <label for="contact-Subject" class="">Subject</label>
-              </div> -->
             </div>
   
           </div>
@@ -62,17 +50,12 @@
                     <textarea matInput type="text" formControlName="message"></textarea>
                     <mat-error *ngIf="contactForm.controls.message.hasError('required')">{{"PleaseEnterYour" | translate}} {{"UserName" | translate}}</mat-error>
                 </mat-form-field>
-              <!-- <div class="md-form">
-                <textarea formControlName="message" type="text" id="contact-message" class="form-control md-textarea" rows="3"
-                  mdbInput></textarea>
-                <label for="contact-message">Your message</label>
-              </div> -->
             </div>
   
           </div>
           
-          <div class="text-center text-md-left">
-            <a mdbBtn (click)="onSubmit()" color="primary" mdbWavesEffect>Send</a>
+          <div class="text-center text-md-left ">
+            <a mdbBtn (click)="onSubmit()" class="red accent-4" mdbWavesEffect>Send</a>
           </div>
         </form>
   
@@ -83,16 +66,16 @@
       <div class="col-md-3 text-center">
         <ul class="list-unstyled mb-0">
           <li>
-            <mdb-icon fas icon="map-marked" size="2x" class="blue-text"></mdb-icon>
-            <p>San Francisco, CA 94126, USA</p>
+            <mdb-icon fas icon="print" size="2x" class="red-text"></mdb-icon>
+            <p>+ 962 7 999 555 44</p>
           </li>
           <li>
-            <mdb-icon fas icon="phone" size="2x" class="mt-4 blue-text"></mdb-icon>
-            <p>+ 01 234 567 89</p>
+            <mdb-icon fas icon="phone" size="2x" class="mt-4 red-text"></mdb-icon>
+            <p>+ 962 7 999 555 44</p>
           </li>
           <li>
-            <mdb-icon fas icon="envelope" size="2x" class="mt-4 blue-text"></mdb-icon>
-            <p class="mb-0">contact@example.com</p>
+            <mdb-icon fas icon="envelope" size="2x" class="mt-4 red-text"></mdb-icon>
+            <p class="mb-0">JordanAcademy@gmail.com</p>
           </li>
         </ul>
       </div>

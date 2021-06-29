@@ -17,7 +17,8 @@ export class SharedService {
   currentCoursesList = this.coursesListSource.asObservable();
 
   textDirection: string= 'ltr';
-  textAlign: string= 'left'
+  textAlign: string= 'left';
+  float: string= 'left';
   currentLang: string;
 
   constructor(private router: Router) {
@@ -41,18 +42,26 @@ export class SharedService {
     if(lang == 'ar')
     { 
       this.textDirection= 'rtl';
-      this.textAlign= 'right'
-      console.log(this.textDirection)
+      this.textAlign= 'right';
+      this.float= 'right';
     }
     else
     {
       this.textDirection= 'ltr';
-      this.textAlign= 'left'
-      console.log(this.textDirection)
+      this.textAlign= 'left';
+      this.float= 'left';
+      
     }
   }
 
-  
+  isLoggedIn(): boolean{
+    let token= localStorage.getItem('token');
+    if(token)
+      return true;
+    else
+      return false;
+  }
+
   async reload(url: string): Promise<boolean> {
     await this.router.navigateByUrl('', { skipLocationChange: true });
     return this.router.navigateByUrl(url);

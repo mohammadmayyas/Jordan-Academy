@@ -21,6 +21,8 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm = new FormGroup({    
     newPassword: new FormControl('', [
       Validators.required,
+      Validators.minLength(8), 
+      Validators.maxLength(200)
     ]),
     newPasswordConfirmed: new FormControl('', [
       Validators.required,
