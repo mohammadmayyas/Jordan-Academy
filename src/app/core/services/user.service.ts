@@ -105,7 +105,7 @@ export class UserService {
   }
 
   resetPassword(userId: string, data: any){
-    return this.http.put(`${env.apiRoot}/api/Account/ResetPassword/${userId}`, data);
+    return this.http.put(`${env.apiRoot}/api/Account/ResetPassword/${userId}`, data,{ responseType: 'text'});
   }
 
   forgotPassword(userId: string, data: any){
@@ -137,4 +137,13 @@ export class UserService {
   getAllUserCourses(userId: number){
     return this.http.get(`${env.apiRoot}/api/User/GetAllUserCourses/${userId}`);
   }
+
+  updateUserImageById(userId: string ,userImage: any){
+    return this.http.post(`${env.apiRoot}/api/User/UpdateUserImageById/${userId}`, userImage,{ responseType: 'text' });
+  }
+
+  updateUserIInfoById(userId: string ,data: any){
+    return this.http.post(`${env.apiRoot}/api/User/UpdateUserInfoById/${userId}`, data,{ responseType: 'text' });
+  }
+
 }

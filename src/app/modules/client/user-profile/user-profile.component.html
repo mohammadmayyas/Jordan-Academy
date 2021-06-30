@@ -6,8 +6,10 @@
                 <mdb-card-body>
               
                 <!--Avatar-->
-                <div class="avatar mx-auto">
-                    <img style="width: 100px;" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                <div class="avatar mx-auto position-relative">
+                    <img style="width: 100px;" src="{{apiRoot}}/{{userImagePath}}" class="rounded-circle">
+                    <i class="fas fa-edit" (click)="file.click()"><input type="file" (change)="updateUserImage(file.files)" style="display:none" #file></i>
+                    
                 </div>
                   <!--Title-->
                   <!-- <mdb-card-title>
@@ -97,7 +99,8 @@
                             <mat-radio-button class="col-md-3" style="margin-top: 35px;" color="warn" value="Female">{{"Female" | translate}}</mat-radio-button>
                         </mat-radio-group>
     
-                        <button mdbBtn class="submit col-md-4" type="submit" color="danger" [outline]="true" mdbWavesEffect>{{"Register" | translate}}</button>
+                        <button mdbBtn class="submit col-md-4" type="submit" color="danger" [outline]="true" mdbWavesEffect
+                            (click)="updateUserInfoById()">Save</button>
                     </form>
     
                   </mdb-card-text>
@@ -140,7 +143,7 @@
                             <mat-error *ngIf="resetPasswordForm.controls.newPassword.value != resetPasswordForm.controls.confirmedPassword.value">Passwords must matching</mat-error>
                         </mat-form-field>
 
-                        <button mdbBtn class="submit col-md-6" type="submit" color="danger" [disabled]="resetPasswordForm.invalid" [outline]="true" mdbWavesEffect>Save</button>
+                        <button mdbBtn (click)="resetPassword()" class="submit col-md-6" type="submit" color="danger" [disabled]="resetPasswordForm.invalid" [outline]="true" mdbWavesEffect>Save</button>
                     </form>
                 </mdb-card-title>
 

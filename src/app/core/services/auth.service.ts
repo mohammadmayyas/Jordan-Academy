@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
+import { SharedService } from './shared.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,13 @@ import jwt_decode from "jwt-decode";
 export class AuthService {
 
   clearTimeout: any;
+  
   constructor(
     private http: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private sharedService: SharedService
     ) { }
 
   login(user: any){
@@ -25,6 +29,8 @@ export class AuthService {
       this.spinner.hide();
       this.router.navigate([''])
       const data: any = jwt_decode(res);
+
+      this.sharedService.user.next(data);
       this.redirectUser(data);
       localStorage.setItem('user', JSON.stringify({ ...data }));
       localStorage.setItem('token', res);

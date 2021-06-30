@@ -1,5 +1,5 @@
 <mdb-navbar [ngStyle]="{'direction': sharedService.textDirection}" 
-  *ngIf="!roles.includes('Admin') && !roles.includes('Trainer') || !authService.isLoggedIn()"
+*ngIf="!authService.isLoggedIn() && !roles.includes('Admin') || !roles.includes('Trainer')"
   class="navbar2" SideClass="navbar fixed-top navbar-expand-lg navbar-dark danger-color-dark scrolling-navbar z-depth-3 intro-fixed-nav" [containerInside]="false">
 
   <mdb-navbar-brand class="col-md-2 {{currentLang}}">
@@ -41,7 +41,7 @@
           <div class="btn-group dropdown" mdbDropdown>
             <a mdbDropdownToggle mdbWavesEffect type="button" class=" waves-light" mdbWavesEffect
                style="height: auto; width: 35px">
-              <img src="{{apiRoot}}/{{userImagePath}}" alt=""
+              <img src="{{apiRoot}}/{{(user | async)?.User_Image_Path}}" alt=""
                    class="img-fluid rounded-circle z-depth-0" ></a>
             <div class="dropdown-menu dropdown-primary">
               <a class="dropdown-item" [routerLink]="['../../client/user-profile', userId]" >{{"Profile" | translate}}</a>
@@ -49,10 +49,12 @@
             </div>
           </div>
           <li [routerLink]="['../../client/user-profile', userId]" *ngIf="getCurrentLang() == 'en'" class="nav-item waves-light user-name" mdbWavesEffect>
-            <a class="nav-link">{{firstNameEn}} {{lastNameEn}}</a>
+            <a class="nav-link"> {{(user | async)?.First_Name_En}} {{(user | async)?.Last_Name_En}}</a>
+            <!-- <a class="nav-link">{{firstNameEn}} {{lastNameEn}}</a> -->
           </li>
           <li *ngIf="getCurrentLang() == 'ar'" class="nav-item waves-light" mdbWavesEffect>
-            <a class="nav-link">{{firstNameAr}} {{lastNameAr}}</a>
+            <a class="nav-link"> {{(user | async)?.First_Name_Ar}} {{(user | async)?.Last_Name_Ar}}</a>
+            <!-- <a class="nav-link">{{firstNameAr}} {{lastNameAr}}</a> -->
           </li>
       </ul>
       <ul class="navbar-nav mr-auto">
@@ -105,8 +107,9 @@
 </ul> -->
 
 
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-light grey lighten-3"
-*ngIf="authService.isLoggedIn() && roles.includes('Admin') || roles.includes('Trainer')" [containerInside]="false">
+
+<!-- 
+<mdb-navbar *hasPermission="['List_AllUsers']" SideClass="navbar fixed-top navbar-expand-lg navbar-light grey lighten-3" [containerInside]="false">
 
   <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
 
@@ -128,34 +131,7 @@
     </ul>
   </links>
 
-</mdb-navbar>
+</mdb-navbar> -->
 
 
-<!-- <div class="col-sm-3 col-md-2 sidebar" >
-  <ul class="nav nav-sidebar">
-      <li class="active"><a href="#">Overview</a></li>
-      <li><a href="#">Reports</a></li>
-      <li><a href="#">Analytics</a></li>
-      <li><a href="#">Export</a></li>
-  </ul>
-</div> -->
 
-
-<div class="wrapper d-flex" *ngIf="authService.isLoggedIn() && roles.includes('Admin') || roles.includes('Trainer')" >
-  <div class="sidebar"> <small class="text-muted pl-3">WIDR PAY</small>
-      <ul>
-          <li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
-          <li><a href="#"><i class="far fa-credit-card"></i>Payment Page <img src="https://img.icons8.com/material-outlined/24/000000/new.png" /></a></li>
-          <li><a href="#"><i class="fas fa-file-invoice"></i>Invoices <img src="https://img.icons8.com/material-outlined/24/000000/2.png" /></a></li>
-      </ul> <small class="text-muted px-3">PRODUCTIVITY TOOLS</small>
-      <ul>
-          <li><a href="#"><i class="far fa-calendar-alt"></i>Online Scheduler</a></li>
-          <li><a href="#"><i class="fas fa-video"></i>Video Meeting</a></li>
-          <li><a href="#"><i class="fas fa-id-badge"></i>Public Profile</a></li>
-      </ul> <small class="text-muted px-3">GROW YOUR CLIENT BASE</small>
-      <ul>
-          <li><a href="#"><i class="fas fa-external-link-alt"></i>Share</a></li>
-          <li><a href="#"><i class="fas fa-code"></i>Add to Website</a></li>
-      </ul>
-  </div>
-</div>

@@ -1,4 +1,4 @@
-<div class=" col-md-12">
+<div class=" col-md-12" *hasPermission="['List_AllUsers']">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>

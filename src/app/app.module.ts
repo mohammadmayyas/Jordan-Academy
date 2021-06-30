@@ -13,13 +13,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';  
 import { DatePipe } from '@angular/common';
 import { TokenInterceptor } from './core/interceptors/token';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { SidnavComponent } from './core/sidnav/sidnav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    SidnavComponent
  
   ],
   imports: [

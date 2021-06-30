@@ -1,10 +1,10 @@
-import { inject, NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-//import { PipesPipe } from './pipes/pipes.pipe';
 import { GetCheckedPermissionsPipe } from './pipes/get-checked-permissions.pipe';
 import { GetCheckedRolesPipe } from './pipes/get-checked-roles.pipe';
+import { SidnavComponent } from './sidnav/sidnav.component';
 
 
 
@@ -13,9 +13,12 @@ import { GetCheckedRolesPipe } from './pipes/get-checked-roles.pipe';
     PageNotFoundComponent,
     GetCheckedPermissionsPipe,
     GetCheckedRolesPipe,
+    SidnavComponent,
+    
   ],
   imports: [
     CommonModule,
-  ]
+  ],
+  //exports: [HasPermissionDirective]
 })
 export class CoreModule { }

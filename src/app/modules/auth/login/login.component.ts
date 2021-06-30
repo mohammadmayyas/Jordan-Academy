@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value);
-    this.sharedService.reload(this.router.url);
+    //this.sharedService.reload(this.router.url);
   }
 
 }

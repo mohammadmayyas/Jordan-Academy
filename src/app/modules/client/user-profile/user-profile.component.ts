@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { environment as env } from 'src/environments/environment';
+import { SharedService } from 'src/app/core/services/shared.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   userId: string= '';
   user: any;
   userImagePath: string= '';
+  apiRoot: string= env.apiRoot;
   currentLang: string = '';
   userForm = new FormGroup({
     userName: new FormControl('', [
@@ -92,6 +95,8 @@ export class UserProfileComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
     public translate: TranslateService,
+    private sharedService: SharedService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -125,10 +130,35 @@ export class UserProfileComponent implements OnInit {
     this.spinner.show();
     this.userService.resetPassword(this.userId, this.resetPasswordForm.value).subscribe(res => {
       this.spinner.hide();
+      this.toaster.success("Your password rest successfully");
     },err =>{
       this.spinner.hide();
-      this.toaster.error("Somthing went wrong");
+      this.toaster.error(err.error);
     });;
+  }
+
+  updateUserInfoById(){
+    this.spinner.show();
+    this.userService.updateUserIInfoById(this.userId, this.userForm.value).subscribe(res => {
+      this.spinner.hide();
+      this.sharedService.reload(this.router.url);
+    }, err => {
+      this.spinner.hide();
+      this.toaster.error(err.error);
+    });
+  }
+
+  updateUserImage(files: any){
+    const formData: FormData = new FormData();
+    formData.append('userImage', files[0]);
+    this.spinner.show();
+    this.userService.updateUserImageById(this.userId, formData).subscribe(res => {
+      this.spinner.hide();
+      this.sharedService.reload(this.router.url);
+    }, err => {
+      this.spinner.hide();
+      this.toaster.error("Somthing went wrong");
+    });
   }
 
 }

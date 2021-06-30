@@ -56,6 +56,7 @@ import { HomeComponent } from './home/home.component';
     UserRolesComponent,
     GetCheckedRolesPipe,
     HomeComponent,
+    
   ],
   imports: [
     CommonModule,

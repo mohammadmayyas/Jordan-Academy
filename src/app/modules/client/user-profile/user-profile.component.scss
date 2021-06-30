@@ -6,3 +6,23 @@
 .gender{
     float: left;
 }
+
+
+.fa-edit {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    font-size: 0.6rem;
+    color: #fff;
+    background: #d70926;
+    padding: 8px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.position-relative{
+    position: relative!important;
+    display: block;
+    width: 27%;
+}

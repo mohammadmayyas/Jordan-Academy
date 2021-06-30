@@ -12,13 +12,15 @@ import { environment as env } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
+  user = this.sharedService.user;
+  currentUser: any = JSON.stringify({ ...this.user })
   @Output() updateLang= new EventEmitter<string>();
   currentLang: string ;
-  firstNameEn: string | undefined;
-  lastNameEn: string | undefined;
-  firstNameAr: string | undefined;
-  lastNameAr: string | undefined;
-  userImagePath: string | undefined;
+  firstNameEn: string = '';
+  lastNameEn: string = '';
+  firstNameAr: string = '';
+  lastNameAr: string = '';
+  userImagePath: string = '';
   apiRoot = env.apiRoot;
   userId: number = 0;
   roles: any[] = [];
@@ -28,7 +30,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     public authService: AuthService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
     ) { 
     this.currentLang = localStorage.getItem('currentLang') || 'en';
     this.translate.use(this.currentLang);
@@ -38,6 +40,7 @@ export class HeaderComponent implements OnInit {
     this.setFullUserName();
     this.getUserId();
     this.getUserRoles();
+    console.log(this.roles);
   }
 
   setCurrentLang(nextLang: string){

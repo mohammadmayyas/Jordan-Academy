@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SharedService {
 
   private roleIdSource = new BehaviorSubject<number>(0);
@@ -21,6 +23,10 @@ export class SharedService {
   float: string= 'left';
   currentLang: string;
 
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  user: BehaviorSubject<User| null> = new BehaviorSubject<User| null>(null); ;
+  
   constructor(private router: Router) {
     this.currentLang = localStorage.getItem('currentLang')!;
     this.onLangChange(this.currentLang);
@@ -67,3 +73,8 @@ export class SharedService {
     return this.router.navigateByUrl(url);
   }
 }
+
+// interface Iuser {
+//   firstNameEn: string;
+//   lastNameEn: string;
+// }

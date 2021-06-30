@@ -26,6 +26,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatDividerModule } from '@angular/material/divider';
+import { HasPermissionDirective } from './directives/has-permission.directive';
 
 
 const shared = [
@@ -61,7 +62,8 @@ const shared = [
 
 
 @NgModule({
+  declarations: [HasPermissionDirective],
   imports: [shared],
-  exports:[shared]
+  exports:[shared, HasPermissionDirective]
 })
 export class SharedModule { }
