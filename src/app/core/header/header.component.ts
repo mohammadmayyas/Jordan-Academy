@@ -12,8 +12,8 @@ import { environment as env } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  user = this.sharedService.user;
-  currentUser: any = JSON.stringify({ ...this.user })
+  currentUser = this.sharedService.currentUser;
+  //currentUser: any = JSON.stringify({ ...this.user })
   @Output() updateLang= new EventEmitter<string>();
   currentLang: string ;
   firstNameEn: string = '';

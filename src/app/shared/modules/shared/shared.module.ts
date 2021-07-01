@@ -17,7 +17,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -48,7 +47,6 @@ const shared = [
   NgxMatFileInputModule,
   MatSidenavModule,
   MatListModule,
-  FlexLayoutModule,
   CdkTableModule,
   MatDialogModule,
   MatCheckboxModule,

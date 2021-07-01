@@ -30,7 +30,7 @@ export class AuthService {
       this.router.navigate([''])
       const data: any = jwt_decode(res);
 
-      this.sharedService.user.next(data);
+      this.sharedService.currentUser.next(data);
       this.redirectUser(data);
       localStorage.setItem('user', JSON.stringify({ ...data }));
       localStorage.setItem('token', res);

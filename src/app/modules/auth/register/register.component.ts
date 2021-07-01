@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentLang = localStorage.getItem('currentLang');
-    console.log(this.currentLang);
     this.registerForm = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
