@@ -31,7 +31,6 @@ export class AuthService {
       const data: any = jwt_decode(res);
 
       this.sharedService.currentUser.next(data);
-      this.redirectUser(data);
       localStorage.setItem('user', JSON.stringify({ ...data }));
       localStorage.setItem('token', res);
       
@@ -73,12 +72,6 @@ export class AuthService {
     this.clearTimeout=  setTimeout(() => {
       this.logout();
     }, expirationDate);
-  }
-
-  redirectUser(user: any){
-    if(user.Roles.includes("Admin")){
-      this.router.navigate(["dashboard/home"]);
-    }
   }
 
 }

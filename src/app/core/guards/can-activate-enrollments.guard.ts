@@ -2,30 +2,31 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { Role } from '../enums/role';
+import { Permission } from '../enums/permission';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class CanActivateEnrollmentsGuard implements CanActivate {
   constructor(
     private route: Router,
     private toastr: ToastrService
   ){}
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+    
       const token = localStorage.getItem('token');
       if(token){
         let user: any = localStorage.getItem('user');
-        if(state.url.indexOf('dashboard') >= 0){
+        if(state.url.indexOf('enrollments') >= 0){
           if (user) {
             user = JSON.parse(user);
-            if (user.Roles.includes(Role.Admin) || user.Roles.includes(Role.Trainer)) {
+            if (user.Permissions.includes(Permission.GetAllUserCourses)) {
               return true;
             } else {
-              this.route.navigate(['']);
+              this.route.navigate(['auth/login']);
               this.toastr.warning('Un-Authorized')
               return false;
             }
@@ -38,7 +39,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.route.navigate(['auth/login']);
-      //this.toastr.warning('Un-Authorized')
+      this.toastr.warning('Un-Authorized')
       return false;
     }
   }

@@ -31,7 +31,6 @@ export class CoursesComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    //this.getAllApprovedEnrollRequests();
     this.getAllCourses();
   }
 
@@ -49,7 +48,7 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  retrieveCourses(){
+  filterCoursesByDate(){
     let fliterdCoursesList: any;
     this.sharedService.currentCoursesList.subscribe(coursesList => this.coursesList = coursesList);
     let searchStartDateToString= moment(this.searchStartDate).format('YYYY-MM-DD');

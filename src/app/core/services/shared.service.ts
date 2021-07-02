@@ -73,8 +73,3 @@ export class SharedService {
     return this.router.navigateByUrl(url);
   }
 }
-
-// interface Iuser {
-//   firstNameEn: string;
-//   lastNameEn: string;
-// }

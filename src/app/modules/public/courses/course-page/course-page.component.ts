@@ -72,7 +72,6 @@ export class CoursePageComponent implements OnInit {
       },err =>{
         this.spinner.hide();
         this.toaster.error("Somthing went wrong..");
-        console.log(err);
       });
       } 
       else{

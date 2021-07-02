@@ -16,14 +16,14 @@
     <h2 class="search-icons"><mdb-icon fas icon="calendar-alt"></mdb-icon></h2>
     <mat-form-field color="accent" appearance="fill" style="width: 100%;">
       <mat-label>Start date</mat-label>
-      <input matInput [matDatepicker]="picker1" (dateChange)="retrieveCourses()" [(ngModel)]="searchStartDate">
+      <input matInput [matDatepicker]="picker1" (dateChange)="filterCoursesByDate()" [(ngModel)]="searchStartDate">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1 color="warn"></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="fill" style="width: 100%;">
       <mat-label>End date</mat-label>
-      <input matInput [matDatepicker]="picker2"  (dateChange)="retrieveCourses()" [(ngModel)]="searchEndDate">
+      <input matInput [matDatepicker]="picker2"  (dateChange)="filterCoursesByDate()" [(ngModel)]="searchEndDate">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2 color="warn"></mat-datepicker>
     </mat-form-field>
@@ -32,9 +32,6 @@
 </div>
 
 <div class="row col-md-9" >
-    <!-- <div class="enrolment-nav">
-        <a class="nav-link hoverable h4-responsive" routerLink="../../client/enrollments">Enrollments</a>
-    </div> -->
     <h1 class="courses-title">Explore our courses to find your perfect program</h1>
     <ng-container *ngFor="let element of coursesList | filter:searchText">
         <div class="col-md-3 animated pulse wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">

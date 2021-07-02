@@ -12,39 +12,18 @@ export class TestimonialService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) { }
 
-  getAllTestimonials(){
-    return this.http.get(`${env.apiRoot}/api/Testimonial`);
-  }
-
   addTestimonial(data: any){
     this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Testimonial`, data).subscribe((res: any) => {
+    return this.http.post(`${env.apiRoot}/api/Testimonial`, data, {responseType: 'text'}).subscribe((res: any) => {
       this.spinner.hide();
+      this.toastr.success('Thank you for intresting, your testimonial pending to approved by admin.');
     }, err => {
       this.spinner.hide();
-    });
-  }
-
-  updateDisplayedTestimonials(data: any[]){
-    this.spinner.show();
-    return this.http.put(`${env.apiRoot}/api/Testimonial/UpdateDisplayedTestimonials`, data).subscribe((res: any) => {
-      this.spinner.hide();
-    }, err => {
-      this.spinner.hide();
-    });
-  }
-
-  deleteTestimonial(testimonialId: number){
-    this.spinner.show();
-    return this.http.delete(`${env.apiRoot}/api/Testimonial/${testimonialId}`).subscribe((res: any) => {
-      this.spinner.hide();
-    }, err => {
-      this.spinner.hide();
+      this.toastr.success('Somthing went wrong');
     });
   }
 

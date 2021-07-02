@@ -1,5 +1,4 @@
 <mdb-navbar [ngStyle]="{'direction': sharedService.textDirection}" 
-*ngIf="!authService.isLoggedIn() && !roles.includes('Admin') || !roles.includes('Trainer')"
   class="navbar2" SideClass="navbar fixed-top navbar-expand-lg navbar-dark danger-color-dark scrolling-navbar z-depth-3 intro-fixed-nav" [containerInside]="false">
 
   <mdb-navbar-brand class="col-md-2 {{currentLang}}">
@@ -16,7 +15,7 @@
           </li>
           <li *ngIf="sharedService.isLoggedIn()" class="nav-item hoverable h4-responsive links waves-light" mdbWavesEffect>
             <a class="nav-link" routerLink="../client/enrollments">{{"Enrollments" | translate}}</a>
-        </li>
+          </li>
           <li class="nav-item hoverable h4-responsive links waves-light" mdbWavesEffect>
             <a class="nav-link" routerLink="../public/testimonials">{{"Testimonials" | translate}}</a>
           </li>
@@ -50,11 +49,9 @@
           </div>
           <li [routerLink]="['../../client/user-profile', userId]" *ngIf="getCurrentLang() == 'en'" class="nav-item waves-light user-name" mdbWavesEffect>
             <a class="nav-link"> {{(currentUser | async)?.First_Name_En}} {{(currentUser | async)?.Last_Name_En}}</a>
-            <!-- <a class="nav-link">{{firstNameEn}} {{lastNameEn}}</a> -->
           </li>
           <li *ngIf="getCurrentLang() == 'ar'" class="nav-item waves-light" mdbWavesEffect>
             <a class="nav-link"> {{(currentUser | async)?.First_Name_Ar}} {{(currentUser | async)?.Last_Name_Ar}}</a>
-            <!-- <a class="nav-link">{{firstNameAr}} {{lastNameAr}}</a> -->
           </li>
       </ul>
       <ul class="navbar-nav mr-auto">
@@ -80,58 +77,5 @@
   </links>
 
 </mdb-navbar>
-
-
-
-
-<!-- <ul class="nav justify-content-end grey lighten-4 py-4" style="position: fixed;"
-  *ngIf="authService.isLoggedIn() && roles.includes('Admin') || roles.includes('Trainer')" style="height: 60px;">
-  <li *ngIf="getCurrentLang() == 'en'" class="nav-item waves-light user-name" mdbWavesEffect>
-    <a class="nav-link">{{firstNameEn}} {{lastNameEn}}</a>
-  </li>
-  <li *ngIf="getCurrentLang() == 'ar'" class="nav-item waves-light" mdbWavesEffect>
-    <a class="nav-link">{{firstNameAr}} {{lastNameAr}}</a>
-  </li>
-  <li class="nav-item" style="margin-right: 40px;">
-    <div class="btn-group dropdown" mdbDropdown>
-      <a mdbDropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light" mdbWavesEffect
-         style="height: auto; width: 30px">
-        <img src="{{apiRoot}}/{{userImagePath}}" alt=""
-             class="img-fluid rounded-circle z-depth-0" ></a>
-      <div class="dropdown-menu dropdown-primary">
-        <a class="dropdown-item" [routerLink]="['../../client/user-profile', userId]" >Profile</a>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
-    </div>
-  </li>
-</ul> -->
-
-
-
-<!-- 
-<mdb-navbar *hasPermission="['List_AllUsers']" SideClass="navbar fixed-top navbar-expand-lg navbar-light grey lighten-3" [containerInside]="false">
-
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
-
-  <links>
-
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link">
-          <div class="btn-group" mdbDropdown>
-            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
-            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" [routerLink]="['../../client/user-profile', userId]" >Profile</a>
-              <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Logout</a>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </links>
-
-</mdb-navbar> -->
-
 
 
