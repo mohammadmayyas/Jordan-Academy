@@ -50,6 +50,7 @@ export class TestimonialsComponent implements OnInit {
     this.testimonialService.getAllAllowedTestimonials().subscribe((res: any) => {
       this.testimonialsList= res;
       this.spinner.hide();
+      console.log(this.testimonialsList);
     }, err => {
       this.spinner.hide();
       this.toaster.error("Somthing went wrong..");

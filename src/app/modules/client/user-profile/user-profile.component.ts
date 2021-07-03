@@ -141,6 +141,7 @@ export class UserProfileComponent implements OnInit {
     this.spinner.show();
     this.userService.updateUserIInfoById(this.userId, this.userForm.value).subscribe(res => {
       this.spinner.hide();
+      this.toaster.success("Your profile updated successfully");
       this.sharedService.reload(this.router.url);
     }, err => {
       this.spinner.hide();

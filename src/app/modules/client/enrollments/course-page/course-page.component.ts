@@ -106,10 +106,12 @@ export class CoursePageComponent implements OnInit {
   checkIfUserAlreadySentCertificateRequest(){
     let user= JSON.parse(localStorage.getItem('user')!);
     let userName= user.User_Name;
+    
     this.certificateService.getAllCertificatesRequests().subscribe((res: any) => {
       this.certificateRequests = res;
+
       let userCertificateRequests = this.certificateRequests.filter(m =>
-        (m.userName= userName) && (m.courseName= this.userCourseInfo.courseName));
+        (m.userName == userName) && (m.courseName == this.userCourseInfo.courseName));
       if(userCertificateRequests.length > 0){
         this.isRequestSent = true;
         this.isDisabled = true;

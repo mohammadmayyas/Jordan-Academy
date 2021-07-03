@@ -50,7 +50,7 @@ export class UserService {
 
   forgotPassword(userId: string, data: any){
     this.spinner.show();
-    return this.http.put(`${env.apiRoot}/api/Account/ForgotPassword/${userId}`, data).subscribe(any => {
+    return this.http.put(`${env.apiRoot}/api/Account/ForgotPassword/${userId}`, data,{ responseType: 'text'}).subscribe(any => {
       this.toastr.success("Your password changed successfully");
       this.spinner.hide();
     }, err => {

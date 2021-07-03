@@ -23,7 +23,7 @@ export class TestimonialService {
       this.toastr.success('Thank you for intresting, your testimonial pending to approved by admin.');
     }, err => {
       this.spinner.hide();
-      this.toastr.success('Somthing went wrong');
+      this.toastr.error('Somthing went wrong');
     });
   }
 

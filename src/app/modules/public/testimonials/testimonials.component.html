@@ -14,7 +14,7 @@
   
       <ng-container *ngFor="let element of testimonialsList">
         <!--Grid column-->
-        <div class="col-md-4 mb-md-0 mb-5">
+        <div class="col-md-4 mb-md-0 mb-5" style="padding-top: 30px;">
     
           <div class="testimonial">
             <!--Avatar-->
@@ -23,12 +23,9 @@
               <img *ngIf="element.users[0].userImagePath == ''" class="userImage" src="{{apiRoot}}/Uploads\Images\avatar-icon.png">
             </div>
             <!--Content-->
-            <h4 class="font-weight-bold dark-grey-text mt-4">Anna Deynah</h4>
+            <h4 class="font-weight-bold dark-grey-text mt-4">{{element.users[0].userName}}</h4>
             <p class="font-weight-normal dark-grey-text">
-              <mdb-icon fas icon="quote-left" class="pr-2"></mdb-icon>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-              eos id
-              officiis hic tenetur quae quaerat
-              ad velit ab hic tenetur.</p>
+              <mdb-icon fas icon="quote-left" class="pr-2"></mdb-icon>{{element.comment}}</p>
             <!--Rating-->
             <div class="orange-text">
               <mdb-icon *ngIf="element.rating >= 1" fas icon="star"> </mdb-icon>

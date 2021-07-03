@@ -14,6 +14,7 @@ import { Permission } from '../enums/permission';
 export class HeaderComponent implements OnInit {
 
   currentUser = this.sharedService.currentUser;
+  
   @Output() updateLang= new EventEmitter<string>();
   currentLang: string ;
   apiRoot = env.apiRoot;
