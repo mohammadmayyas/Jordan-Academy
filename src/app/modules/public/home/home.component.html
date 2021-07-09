@@ -1,13 +1,14 @@
 <div [ngStyle]="{'direction': sharedService.textDirection}">
   <section class="container cover-section">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 animated fadeInRight wow {{sharedService.currentLang}}" data-wow-duration="3s">
         <h1 class="entro-title">{{"entro-title" | translate}}</h1>
+        <h3 class="entro-p">{{"entro-p3" | translate}}</h3>
         <h3 class="entro-p">{{"entro-p1" | translate}}</h3>
-        <h3 class="entro-p2">{{"entro-p2" | translate}}</h3>
+        <h3 class="entro-p">{{"entro-p2" | translate}}</h3>
       </div>
       <div class="col-md-6">
-        <img src="../../../../assets/images/home-cover.png" class="cover animated zoomIn wow" data-wow-duration="3s">
+        <img src="../../../../assets/images/home-cover.png" class="cover animated fadeInLeft wow" data-wow-duration="3s">
       </div>
     </div>
   
@@ -15,14 +16,14 @@
   
   
   <section class="text-center jumbotron info-section">
-  
-    <h1 class="h1 py-5 font-weight-bold">{{"why-us" | translate}}</h1>
-    <p class="px-5 mb-5 pb-3 lead grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+  <div class="container">
+    <h1 class="h1 py-5 font-weight-bold animated fadeInUp wow " data-wow-delay="0.7" data-wow-duration="3s">{{"why-us" | translate}}</h1>
+    <p class="px-5 mb-5 pb-3 lead grey-text animated fadeInUp wow" data-wow-delay="0.7" data-wow-duration="3s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
       Ut enim ad minim veniam.</p>
   
-    <div class="row">
+    <div class="row animated fadeInUp wow" data-wow-delay="0.7" data-wow-duration="3s">
       <div class="col-md-4">
         <mdb-icon fas icon="chart-area" size="3x" class="red-text"></mdb-icon>
         <h5 class="font-weight-bold mt-3">Analytics</h5>
@@ -53,6 +54,8 @@
         </p>
       </div>
     </div>
+  </div>
+
   </section>
   
   <section class="container courses-section text-center">
@@ -88,7 +91,7 @@
   </section>
   
   
-  <section class="text-center spred-section">
+  <section class="text-center spred-section z-depth-2">
   
   </section>
   

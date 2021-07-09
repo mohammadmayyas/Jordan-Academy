@@ -6,7 +6,7 @@
 
   <div class="filter-by-text">
     <h2 class="search-icons"><mdb-icon fas icon="spell-check"></mdb-icon></h2>
-    <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-form-field color="accent" appearance="fill" style="width: 100%;">
       <mat-label>Search for anything</mat-label>
       <input matInput type="text"  [(ngModel)]="searchText">
     </mat-form-field>
@@ -32,7 +32,9 @@
 </div>
 
 <div class="row col-md-9" >
-    <h1 class="courses-title">Explore our courses to find your perfect program</h1>
+    <h1 class="courses-title">Explore our free courses to find your perfect program</h1>
+    <img src="../../../../assets/images/no-data.png" class="no-data" *ngIf="!coursesList.length">
+    
     <ng-container *ngFor="let element of coursesList | filter:searchText">
         <div class="col-md-3 animated pulse wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
           <mdb-card [cascade]="true" [narrower]="true" class="hoverable">

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { SharedService } from 'src/app/core/services/shared.service';
 
@@ -19,15 +18,13 @@ export class LoginComponent implements OnInit {
       Validators.required,
     ]),
   });
-  currentLang:any;
+  
   constructor(
     private authService: AuthService,
-    private sharedService: SharedService,
-    private router: Router
+    public sharedService: SharedService
     ) { }
 
   ngOnInit(): void {
-    this.currentLang = localStorage.getItem('currentLang');
   }
 
   onSubmit(){
@@ -38,7 +35,6 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value);
-    //this.sharedService.reload(this.router.url);
   }
 
 }

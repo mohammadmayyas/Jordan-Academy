@@ -45,6 +45,7 @@ export class SharedService {
   }
 
   onLangChange(lang: string){
+    this.currentLang = lang;
     if(lang == 'ar')
     { 
       this.textDirection= 'rtl';

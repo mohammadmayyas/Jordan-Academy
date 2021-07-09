@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   coursesList: any[] = [];
   apiRoot = env.apiRoot;
+
   constructor(
     public translate: TranslateService,
     public sharedService: SharedService,

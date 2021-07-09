@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
   
   getAllUsers(){
@@ -51,8 +53,9 @@ export class UserService {
   forgotPassword(userId: string, data: any){
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/Account/ForgotPassword/${userId}`, data,{ responseType: 'text'}).subscribe(any => {
-      this.toastr.success("Your password changed successfully");
       this.spinner.hide();
+      this.toastr.success("Your password changed successfully");
+      this.router.navigate(['./auth/login'])
     }, err => {
       this.spinner.hide();
       this.toastr.error("Somthing went wrong!");

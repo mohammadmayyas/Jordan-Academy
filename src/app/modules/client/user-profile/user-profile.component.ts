@@ -19,7 +19,6 @@ export class UserProfileComponent implements OnInit {
   user: any;
   userImagePath: string= '';
   apiRoot: string= env.apiRoot;
-  currentLang: string = '';
   userForm = new FormGroup({
     userName: new FormControl('', [
       Validators.required,
@@ -95,7 +94,7 @@ export class UserProfileComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
     public translate: TranslateService,
-    private sharedService: SharedService,
+    public sharedService: SharedService,
     private router: Router,
   ) { }
 
@@ -150,16 +149,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUserImage(files: any){
-    const formData: FormData = new FormData();
-    formData.append('userImage', files[0]);
-    this.spinner.show();
-    this.userService.updateUserImageById(this.userId, formData).subscribe(res => {
-      this.spinner.hide();
-      this.sharedService.reload(this.router.url);
-    }, err => {
-      this.spinner.hide();
-      this.toaster.error("Somthing went wrong");
-    });
+    if (/\.(jpe?g|png|gif|bmp)$/i.test(files[0].name)){
+      const formData: FormData = new FormData();
+      formData.append('userImage', files[0]);
+      this.spinner.show();
+      this.userService.updateUserImageById(this.userId, formData).subscribe(res => {
+        this.spinner.hide();
+        this.sharedService.reload(this.router.url);
+      }, err => {
+        this.spinner.hide();
+        this.toaster.error("Somthing went wrong");
+      });
+    } else{
+      this.toaster.warning("Image not valid");
+    }
+    
   }
 
 }

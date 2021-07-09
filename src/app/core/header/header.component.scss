@@ -9,20 +9,16 @@
 
 .links{
     border-radius: 30px;
-    //margin-left: 20px;
 }
-
-// .auth{
-//     margin-left: 150px;
-// }
 
 .user-name{
     font-size: 12px;
 }
 
-// .logged-in{
-//     margin-left: 100px;
-// }
+.home{
+    margin-left: 100px;
+}
+
 
 .ar{
     text-align: right;
@@ -33,19 +29,5 @@
     text-align: left;
     float: left;
 }
-  
 
-.sidebar *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-    //font-family: arial
-}
-
-
-.wrapper {
-    position: relative
-}
 

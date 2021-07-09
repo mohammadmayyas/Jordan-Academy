@@ -19,8 +19,6 @@ export class CoursesComponent implements OnInit {
   searchText: any;
   searchStartDate: any;
   searchEndDate: any;
-  totalCount: string = '';
-  pageCount: string = '';
   userCourses: any[] = [];
   constructor(
     public sharedService: SharedService,
@@ -41,7 +39,7 @@ export class CoursesComponent implements OnInit {
         this.getAllUserCourses();
         this.sharedService.onCoursesListChange(this.coursesList);
         this.spinner.hide();
-        console.log(this.coursesList);
+
     }, err => {
         this.spinner.hide();
         this.toaster.error("Somthing went wrong..");
@@ -65,7 +63,7 @@ export class CoursesComponent implements OnInit {
       return;
     }
       
-    this.coursesList= fliterdCoursesList;
+    this.coursesList = fliterdCoursesList;
   }
 
   getAllUserCourses(){
@@ -77,7 +75,7 @@ export class CoursesComponent implements OnInit {
       this.userService.getAllUserCourses(userId).subscribe((res: any) =>{
         this.userCourses= res;
         this.spinner.hide();
-        console.log(this.userCourses);
+
         this.filterCoursesListFromUserCourses();
       }, err => {
         this.toaster.error("Somthing went wrong..");

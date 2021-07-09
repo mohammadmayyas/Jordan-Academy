@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   textAlign: string | undefined;
   lang: string | undefined;
   imageSrc: string| undefined;
-  currentLang = localStorage.getItem('currentLang');
+
   constructor(
     public translate: TranslateService,
     private authService: AuthService,
@@ -26,7 +26,6 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.currentLang = localStorage.getItem('currentLang');
     this.registerForm = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
@@ -94,7 +93,6 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     if(!this.registerForm.valid)
          return;
-   console.log(this.registerForm.value);
    this.register();
   }
 
@@ -145,6 +143,11 @@ export class RegisterComponent implements OnInit {
         });
       };
     }
+  }
+
+  userImageValidation(){
+    if (!(/\.(jpe?g|png|gif|bmp)$/i.test(this.registerForm.controls.userImage.value.name)))
+      this.registerForm.controls.userImage.setErrors({'incorrect': true});
   }
 
 }

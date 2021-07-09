@@ -54,7 +54,7 @@ const shared = [
   MatCardModule,
   MDBBootstrapModule.forRoot(),
   Ng2SearchPipeModule,
-  MatDividerModule,
+  MatDividerModule
 
 ];
 

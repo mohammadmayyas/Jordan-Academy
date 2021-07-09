@@ -14,11 +14,10 @@ import { Permission } from '../enums/permission';
 export class HeaderComponent implements OnInit {
 
   currentUser = this.sharedService.currentUser;
-  
   @Output() updateLang= new EventEmitter<string>();
+
   currentLang: string ;
   apiRoot = env.apiRoot;
-  userId: number = 0;
   roles: any[] = [];
   permission = Permission;
 
@@ -33,7 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUserId();
   }
 
   setCurrentLang(nextLang: string){
@@ -52,12 +50,5 @@ export class HeaderComponent implements OnInit {
     return 'en';
   }
 
-  getUserId(){
-    let user: any= localStorage.getItem('user');
-    if(user){
-      user = JSON.parse(user);
-      this.userId= user.User_Id;
-    }
-  }
 
 }

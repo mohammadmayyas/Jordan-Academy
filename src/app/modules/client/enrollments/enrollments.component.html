@@ -1,5 +1,7 @@
 <div class="container">
     <div class="row" >
+      <img src="../../../../assets/images/no-data.png" class="no-data" *ngIf="!enrollmentsList.length">
+      
         <ng-container *ngFor="let element of enrollmentsList">
             <div class="col-md-3 animated pulse wow course-card" [routerLink]="['../course-page', element.courseId]" data-wow-duration="2s" data-wow-delay="0.7">
               <mdb-card [cascade]="true" [narrower]="true" class="hoverable">

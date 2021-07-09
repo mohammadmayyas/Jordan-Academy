@@ -5,8 +5,8 @@
       <a class="navbar-brand"><img src="../../../assets/images/logo.png" style="height: 35px;"></a>
   </mdb-navbar-brand>
 
-  <links class="navContent">
-      <ul class="navbar-nav mr-auto col-md-6">
+  <links class="navContent col-md-12">
+      <ul class="navbar-nav mr-auto col-md-6 home">
           <li class="nav-item hoverable h4-responsive links waves-light" mdbWavesEffect>
               <a class="nav-link" routerLink="../public/home">{{"Home" | translate}} <span class="sr-only">(current)</span></a>
           </li>
@@ -40,14 +40,19 @@
           <div class="btn-group dropdown" mdbDropdown>
             <a mdbDropdownToggle mdbWavesEffect type="button" class=" waves-light" mdbWavesEffect
                style="height: auto; width: 35px">
-              <img src="{{apiRoot}}/{{(currentUser | async)?.User_Image_Path}}" alt=""
-                   class="img-fluid rounded-circle z-depth-0" ></a>
+              <img *ngIf="(currentUser | async)?.User_Image_Path != ''"
+                  src="{{apiRoot}}/{{(currentUser | async)?.User_Image_Path}}" alt=""
+                  class="img-fluid rounded-circle z-depth-0" >
+              <img *ngIf="(currentUser | async)?.User_Image_Path == ''"
+                  src="{{apiRoot}}/Uploads\Images\avatar-icon.png" alt=""
+                  class="img-fluid rounded-circle z-depth-0" >
+            </a>
             <div class="dropdown-menu dropdown-primary">
-              <a class="dropdown-item" [routerLink]="['../../client/user-profile', userId]" >{{"Profile" | translate}}</a>
+              <a class="dropdown-item" [routerLink]="['../../client/user-profile', (currentUser | async)?.User_Id]" >{{"Profile" | translate}}</a>
               <a class="dropdown-item" (click)="logout()">{{"Logout" | translate}}</a>
             </div>
           </div>
-          <li [routerLink]="['../../client/user-profile', userId]" *ngIf="getCurrentLang() == 'en'" class="nav-item waves-light user-name" mdbWavesEffect>
+          <li [routerLink]="['../../client/user-profile', (currentUser | async)?.User_Id]" *ngIf="getCurrentLang() == 'en'" class="nav-item waves-light user-name" mdbWavesEffect>
             <a class="nav-link"> {{(currentUser | async)?.First_Name_En}} {{(currentUser | async)?.Last_Name_En}}</a>
           </li>
           <li *ngIf="getCurrentLang() == 'ar'" class="nav-item waves-light" mdbWavesEffect>
