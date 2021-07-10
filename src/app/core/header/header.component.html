@@ -6,7 +6,7 @@
   </mdb-navbar-brand>
 
   <links class="navContent col-md-12">
-      <ul class="navbar-nav mr-auto col-md-6 home">
+      <ul class="navbar-nav mr-auto col-md-7 home">
           <li class="nav-item hoverable h4-responsive links waves-light" mdbWavesEffect>
               <a class="nav-link" routerLink="../public/home">{{"Home" | translate}} <span class="sr-only">(current)</span></a>
           </li>
@@ -27,7 +27,7 @@
           </li>
       </ul>
       
-      <div class="row col-md-4">
+      <div class="row col-md-4 auth">
         <ul *ngIf="!authService.isLoggedIn()" class="navbar-nav mr-auto">
           <li class="nav-item hoverable h4-responsive links waves-light" mdbWavesEffect>
             <a class="nav-link" routerLink="../auth/register">{{"Register" | translate}}</a>
