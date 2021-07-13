@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
       Validators.minLength(8), 
       Validators.maxLength(200)
     ]),
-    newPasswordConfirmed: new FormControl('', [
+    confirmedPassword: new FormControl('', [
       Validators.required,
     ])
   });
@@ -42,6 +42,12 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword(){
     let newPassword= new NewPassword(this.forgotPasswordForm.controls.newPassword.value );
     this.userService.forgotPassword(this.userId, newPassword);
+  }
+
+  confirmPassword(event: Event) {
+    const confirmedPassword = (event.target as HTMLInputElement).value;
+    if(confirmedPassword != this.forgotPasswordForm.controls.newPassword.value)
+      this.forgotPasswordForm.controls.confirmedPassword.setErrors({'incorrect': true});
   }
 
 }

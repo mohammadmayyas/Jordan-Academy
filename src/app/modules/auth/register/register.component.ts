@@ -86,6 +86,9 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(8), 
         Validators.maxLength(200)
       ]),
+      confirmedPassword: new FormControl('', [
+        Validators.required
+      ]),
     })
   }
 
@@ -148,6 +151,12 @@ export class RegisterComponent implements OnInit {
   userImageValidation(){
     if (!(/\.(jpe?g|png|gif|bmp)$/i.test(this.registerForm.controls.userImage.value.name)))
       this.registerForm.controls.userImage.setErrors({'incorrect': true});
+  }
+
+  confirmPassword(event: Event) {
+    const confirmedPassword = (event.target as HTMLInputElement).value;
+    if(confirmedPassword != this.registerForm.controls.password.value)
+      this.registerForm.controls.confirmedPassword.setErrors({'incorrect': true});
   }
 
 }

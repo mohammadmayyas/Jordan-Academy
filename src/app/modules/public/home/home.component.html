@@ -62,7 +62,7 @@
     <h1 class="courses-title">{{"CheckOutOurCourses" | translate}}</h1>
     <div class="row courses">
       <ng-container *ngFor="let element of coursesList">
-        <div class="col-md-3 course-card animated zoomIn wow" data-wow-duration="3s" data-wow-delay="0.7">
+        <div class="col-sm-3 course-card animated zoomIn wow" data-wow-duration="3s" data-wow-delay="0.7">
           <mdb-card [cascade]="true" [narrower]="true" class="hoverable">
             <div class="z-depth-3 view-cascade overlay waves-light" mdbWavesEffect>
               <mdb-card-img src="{{apiRoot}}/{{element.courseImagePath}}"></mdb-card-img>

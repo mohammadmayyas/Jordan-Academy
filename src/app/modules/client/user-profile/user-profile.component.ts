@@ -163,7 +163,12 @@ export class UserProfileComponent implements OnInit {
     } else{
       this.toaster.warning("Image not valid");
     }
-    
+  }
+
+  confirmPassword(event: Event) {
+    const confirmedPassword = (event.target as HTMLInputElement).value;
+    if(confirmedPassword != this.resetPasswordForm.controls.newPassword.value)
+      this.resetPasswordForm.controls.confirmedPassword.setErrors({'incorrect': true});
   }
 
 }
