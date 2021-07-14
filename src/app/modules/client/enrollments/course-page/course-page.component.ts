@@ -45,6 +45,7 @@ export class CoursePageComponent implements OnInit {
   isRequestSent: boolean= false;
   certificateRequests: any[]= [];
   trainer: any = '';
+  finalTotal: number = 0;
   constructor(
     private route: ActivatedRoute,
     private sharedService: SharedService,
@@ -97,9 +98,11 @@ export class CoursePageComponent implements OnInit {
   }
 
   checkIfUserCanSendCertificateRequest(){
+    this.finalTotal = +this.userCourseInfo.userCourses[0].firstMark + +this.userCourseInfo.userCourses[0].secondMark +
+      +this.userCourseInfo.userCourses[0].thirdMark + +this.userCourseInfo.userCourses[0].finalMark
     let todayDate = moment(new Date()).format('YYYY-MM-DD');
     let courseEndDate = moment(this.userCourseInfo.endDate).format('YYYY-MM-DD');
-    if(todayDate >= courseEndDate && this.userCourseInfo.userCourses[0].finalMark >= 50)
+    if(todayDate >= courseEndDate && this.finalTotal >= 50)
       this.isDisabled = false;
   }
 

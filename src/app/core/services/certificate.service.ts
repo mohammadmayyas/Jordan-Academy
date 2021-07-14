@@ -16,4 +16,8 @@ export class CertificateService {
     return this.http.get(`${env.apiRoot}/api/Certificate/GetAllCertificatesRequests`);
   }
 
+  checkForCertificateById(certificateId: number){
+    return this.http.get(`${env.apiRoot}/api/Certificate/CheckForCertificateById/${certificateId}`);
+  }
+
 }

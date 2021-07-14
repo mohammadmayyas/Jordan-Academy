@@ -10,6 +10,11 @@
       <div class="col-md-6">
         <img src="../../../../assets/images/home-cover.png" class="cover animated fadeInLeft wow" data-wow-duration="3s">
       </div>
+      <div class="text-center">
+        <input type="text" class="form-control" (keyup)="checkForCertificate($event)" #certificateId placeholder="Search for verfid certificate">
+        <div *ngIf="isCertificateExist" class="alert alert-success">This certificate is verfid</div>
+        <div *ngIf="!isCertificateExist && certificateId.value != ''" class="alert alert-danger">Not verfid certificate </div>
+      </div>
     </div>
   
   </section>
@@ -58,8 +63,8 @@
 
   </section>
   
-  <section class="container courses-section text-center">
-    <h1 class="courses-title">{{"CheckOutOurCourses" | translate}}</h1>
+  <section class="container courses-section">
+    <h1 class="courses-title text-center">{{"CheckOutOurCourses" | translate}}</h1>
     <div class="row courses">
       <ng-container *ngFor="let element of coursesList">
         <div class="col-sm-3 course-card animated zoomIn wow" data-wow-duration="3s" data-wow-delay="0.7">

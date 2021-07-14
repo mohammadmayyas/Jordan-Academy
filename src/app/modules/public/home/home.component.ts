@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/core/services/shared.service';
 import { environment as env } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { CertificateService } from 'src/app/core/services/certificate.service';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,15 @@ export class HomeComponent implements OnInit {
 
   coursesList: any[] = [];
   apiRoot = env.apiRoot;
+  isCertificateExist: boolean | undefined;
 
   constructor(
     public translate: TranslateService,
     public sharedService: SharedService,
     private courseService: CourseService,
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private certificateService: CertificateService 
     ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,15 @@ export class HomeComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toaster.error("Somthing went wrong..");
+    });
+  }
+
+  checkForCertificate(event: Event){
+    const certificateId = +(event.target as HTMLInputElement).value;
+    this.certificateService.checkForCertificateById(certificateId).subscribe((res: any) =>{
+      this.isCertificateExist = res;
+    }, err => {
       this.toaster.error("Somthing went wrong..");
     });
   }

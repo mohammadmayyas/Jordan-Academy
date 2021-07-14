@@ -25,7 +25,7 @@ export class SharedService {
 
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  currentUser: BehaviorSubject<User| null> = new BehaviorSubject<User| null>(null); ;
+  currentUser: BehaviorSubject<User| null> = new BehaviorSubject<User| null>(null);
   
   constructor(private router: Router) {
     this.currentLang = localStorage.getItem('currentLang')!;
