@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
 
   coursesList: any[] = [];
   apiRoot = env.apiRoot;
-  isCertificateExist: boolean | undefined;
 
   constructor(
     public translate: TranslateService,
@@ -44,13 +43,24 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  checkForCertificate(event: Event){
-    const certificateId = +(event.target as HTMLInputElement).value;
-    this.certificateService.checkForCertificateById(certificateId).subscribe((res: any) =>{
-      this.isCertificateExist = res;
-    }, err => {
-      this.toaster.error("Somthing went wrong..");
-    });
+  SearchForCertificate(serialNumber: string){
+    if(serialNumber != ''){
+      const options = { opacity: 0.5 };
+      this.certificateService.SearchForCertificate(serialNumber.toUpperCase()).subscribe((res: any) =>{
+        if(res)
+          this.toaster.success('Verfid certificate', '', {
+            timeOut: 5000,
+            positionClass: 'toast-bottom-left'
+          });
+        else
+          this.toaster.error('Not verfid certificate', '', {
+            timeOut: 5000,
+            positionClass: 'toast-bottom-left'
+          });
+      }, err => {
+        this.toaster.error("Somthing went wrong..");
+      });
+    }
   }
 
 }

@@ -10,13 +10,13 @@
       <div class="col-md-6">
         <img src="../../../../assets/images/home-cover.png" class="cover animated fadeInLeft wow" data-wow-duration="3s">
       </div>
-      <div class="text-center">
-        <input type="text" class="form-control" (keyup)="checkForCertificate($event)" #certificateId placeholder="Search for verfid certificate">
-        <div *ngIf="isCertificateExist" class="alert alert-success">This certificate is verfid</div>
-        <div *ngIf="!isCertificateExist && certificateId.value != ''" class="alert alert-danger">Not verfid certificate </div>
-      </div>
     </div>
   
+    <div class="search text-center">
+      <input type="text" class="form-control search-input col-md-3 animated fadeInRight wow" data-wow-duration="3s" #serialNumber placeholder="Search for verfid certificate">
+      <button mdbBtn class="search-btn animated fadeInLeft wow" color="danger" [outline]="true" mdbWavesEffect data-wow-duration="3s"
+        (click)="SearchForCertificate(serialNumber.value)">Search</button>
+    </div>
   </section>
   
   
