@@ -45,20 +45,26 @@ export class HomeComponent implements OnInit {
 
   SearchForCertificate(serialNumber: string){
     if(serialNumber != ''){
+      this.spinner.show();
       const options = { opacity: 0.5 };
       this.certificateService.SearchForCertificate(serialNumber.toUpperCase()).subscribe((res: any) =>{
         if(res)
-          this.toaster.success('Verfid certificate', '', {
+          {this.toaster.success('Verfid certificate', '', {
             timeOut: 5000,
             positionClass: 'toast-bottom-left'
           });
+          this.spinner.hide();
+        }
         else
-          this.toaster.error('Not verfid certificate', '', {
+          {this.toaster.error('Not verfid certificate', '', {
             timeOut: 5000,
             positionClass: 'toast-bottom-left'
           });
+          this.spinner.hide();
+        }
       }, err => {
         this.toaster.error("Somthing went wrong..");
+        this.spinner.hide();
       });
     }
   }
