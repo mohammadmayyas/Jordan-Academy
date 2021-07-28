@@ -13,9 +13,9 @@
     </div>
   
     <div class="search text-center">
-      <input type="text" class="form-control search-input col-md-3 animated fadeInRight wow" data-wow-duration="3s" #serialNumber placeholder="Search for verfid certificate">
+      <input type="text" class="form-control search-input col-md-3 animated fadeInRight wow" data-wow-duration="3s" #serialNumber placeholder="{{'SearchForVerfidCertificate' | translate}}">
       <button mdbBtn class="search-btn animated fadeInLeft wow" color="danger" [outline]="true" mdbWavesEffect data-wow-duration="3s"
-        (click)="SearchForCertificate(serialNumber.value)">Search</button>
+        (click)="SearchForCertificate(serialNumber.value)">{{"Search" | translate}}</button>
     </div>
   </section>
   

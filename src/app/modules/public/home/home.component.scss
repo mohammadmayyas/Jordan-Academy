@@ -77,7 +77,11 @@ h4{
 }
 
 .search-input{
-    margin-left: 37%;
+    margin: {
+        left: 37%;
+        right: 37%;
+    };
+    
 }
 
 .search-btn{
