@@ -53,7 +53,7 @@ export class CoursePageComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
-      this.toaster.error("Somthing went wrong..");
+      this.toaster.error("Something went wrong..");
     });
   }
 
@@ -71,7 +71,7 @@ export class CoursePageComponent implements OnInit {
       this.sharedService.reload(this.router.url);
       },err =>{
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong..");
+        this.toaster.error("Something went wrong..");
       });
       } 
       else{
@@ -90,7 +90,7 @@ export class CoursePageComponent implements OnInit {
       this.spinner.hide();
       }, err => {
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong..");
+        this.toaster.error("Something went wrong..");
       });
     }
     

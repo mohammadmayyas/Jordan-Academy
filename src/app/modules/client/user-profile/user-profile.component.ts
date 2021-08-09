@@ -121,7 +121,7 @@ export class UserProfileComponent implements OnInit {
         this.userForm.controls.address.setValue(this.user.address);
         this.userImagePath = this.user.userImagePath;
     }, err => {
-      this.toaster.error("Somthing went wrong");
+      this.toaster.error("Something went wrong");
     })
   }
 
@@ -158,7 +158,7 @@ export class UserProfileComponent implements OnInit {
         this.sharedService.reload(this.router.url);
       }, err => {
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong");
+        this.toaster.error("Something went wrong");
       });
     } else{
       this.toaster.warning("Image not valid");

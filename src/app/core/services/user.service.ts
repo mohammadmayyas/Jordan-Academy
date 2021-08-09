@@ -58,7 +58,7 @@ export class UserService {
       this.router.navigate(['./auth/login'])
     }, err => {
       this.spinner.hide();
-      this.toastr.error("Somthing went wrong!");
+      this.toastr.error("Something went wrong!");
     });
   }
 
@@ -66,7 +66,7 @@ export class UserService {
     this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Account/sendResetPasswordLinkToEmail`, data).subscribe(any => {
       this.spinner.hide();
-      this.toastr.success("Password reset link sent to youre email")
+      this.toastr.success("Password reset link sent to your email")
     }, err => {
       this.spinner.hide();
       this.toastr.error("Email not exist");

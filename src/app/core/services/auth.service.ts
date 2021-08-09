@@ -48,7 +48,7 @@ export class AuthService {
         responseType: 'text' }).subscribe((res: any) => {
       this.spinner.hide();
       this.router.navigate(['auth/login'])
-      this.toastr.success('Registerd successfully');
+      this.toastr.success('Registered successfully');
     },err =>{
       this.spinner.hide();
       this.toastr.error(err.error)

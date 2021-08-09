@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
 
     }, err => {
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong..");
+        this.toaster.error("Something went wrong..");
     });
   }
 
@@ -78,7 +78,7 @@ export class CoursesComponent implements OnInit {
 
         this.filterCoursesListFromUserCourses();
       }, err => {
-        this.toaster.error("Somthing went wrong..");
+        this.toaster.error("Something went wrong..");
         this.spinner.hide();
       });
     }

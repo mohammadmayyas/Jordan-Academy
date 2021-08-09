@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
-      this.toaster.error("Somthing went wrong..");
+      this.toaster.error("Something went wrong..");
     });
   }
 
@@ -56,14 +56,14 @@ export class HomeComponent implements OnInit {
           this.spinner.hide();
         }
         else
-          {this.toaster.error('Not verfid certificate', '', {
+          {this.toaster.error('Not verified certificate', '', {
             timeOut: 5000,
             positionClass: 'toast-bottom-left'
           });
           this.spinner.hide();
         }
       }, err => {
-        this.toaster.error("Somthing went wrong..");
+        this.toaster.error("Something went wrong..");
         this.spinner.hide();
       });
     }

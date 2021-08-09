@@ -50,7 +50,6 @@ export class CoursePageComponent implements OnInit {
     private route: ActivatedRoute,
     private sharedService: SharedService,
     private spinner: NgxSpinnerService,
-    private courseService: CourseService,
     private userService: UserService,
     private router: Router,
     private toaster: ToastrService,
@@ -78,7 +77,7 @@ export class CoursePageComponent implements OnInit {
         this.spinner.hide();
       }, err => {
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong");
+        this.toaster.error("Something went wrong");
       });
     }
   
@@ -121,7 +120,7 @@ export class CoursePageComponent implements OnInit {
       }
         
     }, err => {
-      this.toaster.error("Somthing went wrong");
+      this.toaster.error("Something went wrong");
     });
   }
 
@@ -129,7 +128,7 @@ export class CoursePageComponent implements OnInit {
     this.userService.getFullUserNameById(userId).subscribe((res: any) => {
       this.trainer = res;
     }, err => {
-      this.toaster.error("Somthing went wrong");
+      this.toaster.error("Something went wrong");
     });
   }
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,10 +19,10 @@ export class TestimonialService {
     this.spinner.show();
     return this.http.post(`${env.apiRoot}/api/Testimonial`, data, {responseType: 'text'}).subscribe((res: any) => {
       this.spinner.hide();
-      this.toastr.success('Thank you for intresting, your testimonial pending to approved by admin.');
+      this.toastr.success('Thank you for interesting, your testimonial pending to approved by admin.');
     }, err => {
       this.spinner.hide();
-      this.toastr.error('Somthing went wrong');
+      this.toastr.error('Something went wrong');
     });
   }
 

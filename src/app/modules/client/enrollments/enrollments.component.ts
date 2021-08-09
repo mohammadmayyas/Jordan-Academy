@@ -17,7 +17,6 @@ export class EnrollmentsComponent implements OnInit {
   apiRoot: string= env.apiRoot;
   constructor(
     public sharedService: SharedService,
-    private courseService: CourseService,
     private userService: UserService,
     private spinner: NgxSpinnerService,
     private toaster: ToastrService
@@ -38,7 +37,7 @@ export class EnrollmentsComponent implements OnInit {
         this.spinner.hide();
       }, err => {
         this.spinner.hide();
-        this.toaster.error("Somthing went wrong");
+        this.toaster.error("Something went wrong");
       });
     }
   }

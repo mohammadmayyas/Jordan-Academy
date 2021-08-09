@@ -53,7 +53,7 @@ export class TestimonialsComponent implements OnInit {
       console.log(this.testimonialsList);
     }, err => {
       this.spinner.hide();
-      this.toaster.error("Somthing went wrong..");
+      this.toaster.error("Something went wrong..");
     })
   }
 

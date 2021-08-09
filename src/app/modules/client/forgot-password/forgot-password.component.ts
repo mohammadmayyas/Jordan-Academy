@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -31,7 +30,6 @@ export class ForgotPasswordComponent implements OnInit {
   userId: string = '';
   constructor(
     private userService: UserService,
-    private spinner: NgxSpinnerService,
     private route: ActivatedRoute
   ) { }
 
